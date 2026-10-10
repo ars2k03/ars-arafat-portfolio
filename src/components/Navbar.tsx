@@ -26,6 +26,7 @@ export default function Navbar() {
     volumeRoman: string;
     count: number;
   } | null>(null);
+  
   const [weather, setWeather] = useState<{
     temp: string;
     condition: string;
@@ -47,20 +48,66 @@ export default function Navbar() {
       // fallback
     }
 
-    // Fetch dynamic visitor stats (IP + Browser + Device fingerprint)
-    fetch("/api/visitors")
-      .then((res) => res.json())
-      .then((data) => {
+    // Fetch dynamic visitor stats (collect device local time, timezone, city, and country)
+    const collectVisitorInfo = async () => {
+      try {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+        const localTime = new Date().toLocaleString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        });
+
+        // Fast fallback derived directly from timezone / browser language
+        let city = timeZone.includes("/") ? timeZone.split("/")[1].replace(/_/g, " ") : "Unknown";
+        let country = "Unknown";
+        if (timeZone.startsWith("Asia/Dhaka") || navigator.language.endsWith("-BD")) {
+          country = "Bangladesh";
+          city = "Dhaka";
+        }
+
+        // Try getting accurate public IP geo lookup from client browser
+        try {
+          const geoRes = await fetch("https://ipwho.is/", { signal: AbortSignal.timeout(2000) });
+          if (geoRes.ok) {
+            const geo = await geoRes.json();
+            if (geo?.success) {
+              country = geo.country || country;
+              city = geo.city || city;
+            }
+          }
+        } catch {
+          // silently keep fallback
+        }
+
+        const res = await fetch("/api/visitors", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            localTime,
+            timeZone,
+            city,
+            country,
+          }),
+        });
+
+        const data = await res.json();
         if (data?.success && data.volumeRoman && typeof data.count === "number") {
           setVisitorStats({
             volumeRoman: data.volumeRoman,
             count: data.count,
           });
         }
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Failed to load visitor stats:", err);
-      });
+      }
+    };
+
+    collectVisitorInfo();
 
     // Fetch live weather from /api/weather
     fetch("/api/weather")
