@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const cityParam = searchParams.get("city")?.trim();
+
   try {
     const apiKey = process.env.WEATHER_API_KEY;
 
@@ -8,9 +11,9 @@ export async function GET() {
       throw new Error("WEATHER_API_KEY is not defined in .env");
     }
 
-    // Hardcoded location: Dhaka, Bangladesh
+    const queryCity = cityParam && cityParam !== "Unknown" ? cityParam : "Dhaka";
     const res = await fetch(
-      `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Dhaka&aqi=no`,
+      `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(queryCity)}&aqi=no`,
       {
         next: { revalidate: 300 }, // Cache weather for 5 minutes
       }
@@ -21,12 +24,13 @@ export async function GET() {
     }
 
     const data = await res.json();
-    const temp = data?.current?.temp_c ?? 26;
+    const resolvedCity = (data?.location?.name || queryCity).toUpperCase();
+    const temp = Math.round(data?.current?.temp_c ?? 26);
     const condition = (data?.current?.condition?.text ?? "CLEAR").toUpperCase();
 
     return NextResponse.json({
       success: true,
-      city: "DHAKA",
+      city: resolvedCity,
       temp: `${temp}°C`,
       condition,
     });
@@ -42,10 +46,11 @@ export async function GET() {
 
     console.error("Weather API error:", error);
 
-    // Reliable fallback for Dhaka weather
+    // Reliable fallback
+    const fallbackCity = (cityParam && cityParam !== "Unknown" ? cityParam : "DHAKA").toUpperCase();
     return NextResponse.json({
       success: false,
-      city: "DHAKA",
+      city: fallbackCity,
       temp: "26°C",
       condition: "CLEAR",
     });

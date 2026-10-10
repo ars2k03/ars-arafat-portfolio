@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 interface NavItem {
@@ -19,6 +19,28 @@ const NAV_ITEMS: NavItem[] = [
   { label: "CONTACT", href: "#contact" },
 ];
 
+const DEFAULT_CITY = "Dhaka";
+
+const formatNewspaperDate = (date: Date) => date.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).toUpperCase();
+
+const lookupGeoByIp = async () => {
+  try {
+    const res = await fetch("https://ipwho.is/", {
+      signal: AbortSignal.timeout(2000),
+    });
+    if (!res.ok) return null;
+    const geo = await res.json();
+    return geo?.success ? geo : null;
+  } catch {
+    return null;
+  }
+};
+
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
@@ -26,30 +48,56 @@ export default function Navbar() {
     volumeRoman: string;
     count: number;
   } | null>(null);
-  
+
   const [weather, setWeather] = useState<{
+    city: string;
     temp: string;
     condition: string;
   } | null>(null);
 
-  useEffect(() => {
-    // Format a stately newspaper date string
-    const now = new Date();
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    try {
-      const formatted = now.toLocaleDateString("en-US", options).toUpperCase();
-      setCurrentDate(formatted);
-    } catch {
-      // fallback
-    }
+  const [currentTime, setCurrentTime] = useState<string>("");
 
-    // Fetch dynamic visitor stats (collect device local time, timezone, city, and country)
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setCurrentTime(
+        now.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        })
+      );
+    };
+
+    updateTime();
+    const timer = setInterval(updateTime, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    setCurrentDate(formatNewspaperDate(new Date()));
+
+    const fetchWeather = async (city: string) => {
+      try {
+        const res = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
+        const data = await res.json();
+        if (data?.temp) {
+          setWeather({
+            city: data.city || city.toUpperCase(),
+            temp: data.temp,
+            condition: data.condition,
+          });
+        }
+      } catch (err) {
+        console.error("Failed to load weather:", err);
+      }
+    };
+
     const collectVisitorInfo = async () => {
+      let city = DEFAULT_CITY;
+      let country = "Bangladesh";
+
       try {
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
         const localTime = new Date().toLocaleString("en-US", {
@@ -62,67 +110,29 @@ export default function Navbar() {
           hour12: true,
         });
 
-        // Fast fallback derived directly from timezone / browser language
-        let city = timeZone.includes("/") ? timeZone.split("/")[1].replace(/_/g, " ") : "Unknown";
-        let country = "Unknown";
-        if (timeZone.startsWith("Asia/Dhaka") || navigator.language.endsWith("-BD")) {
-          country = "Bangladesh";
-          city = "Dhaka";
-        }
+        const geo = await lookupGeoByIp();
+        if (geo?.city) city = geo.city;
+        if (geo?.country) country = geo.country;
 
-        // Try getting accurate public IP geo lookup from client browser
-        try {
-          const geoRes = await fetch("https://ipwho.is/", { signal: AbortSignal.timeout(2000) });
-          if (geoRes.ok) {
-            const geo = await geoRes.json();
-            if (geo?.success) {
-              country = geo.country || country;
-              city = geo.city || city;
-            }
-          }
-        } catch {
-          // silently keep fallback
-        }
+        fetchWeather(city);
 
         const res = await fetch("/api/visitors", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            localTime,
-            timeZone,
-            city,
-            country,
-          }),
+          body: JSON.stringify({ localTime, timeZone, city, country }),
         });
-
         const data = await res.json();
+
         if (data?.success && data.volumeRoman && typeof data.count === "number") {
-          setVisitorStats({
-            volumeRoman: data.volumeRoman,
-            count: data.count,
-          });
+          setVisitorStats({ volumeRoman: data.volumeRoman, count: data.count });
         }
       } catch (err) {
         console.error("Failed to load visitor stats:", err);
+        fetchWeather(city);
       }
     };
 
     collectVisitorInfo();
-
-    // Fetch live weather from /api/weather
-    fetch("/api/weather")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.temp) {
-          setWeather({
-            temp: data.temp,
-            condition: data.condition,
-          });
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to load weather:", err);
-      });
   }, []);
 
   return (
@@ -137,7 +147,7 @@ export default function Navbar() {
               {visitorStats ? String(visitorStats.count).padStart(2, "0") : "—"}
             </span>
             <span className="text-[#1a1a1a]/40">•</span>
-            <span className="text-[#3d3830] font-semibold">ESTABLISHED 2026</span>
+            <span className="text-[#3d3830] font-semibold">EST. 2026</span>
           </div>
 
           {/* Center Date */}
@@ -148,9 +158,11 @@ export default function Navbar() {
           {/* Right Ear */}
           <div className="flex items-center gap-3">
             <span className="hidden md:inline font-medium">
-              DHAKA: {weather ? `${weather.temp} · ${weather.condition}` : "26°C · CLEAR"}
+              {weather
+                ? `${weather.city}: ${weather.temp} · ${weather.condition}`
+                : "DHAKA: 26°C · CLEAR"}
             </span>
-            <span className="hidden md:inline text-[#1a1a1a]/40">•</span>
+            
             <span className="bg-[#1a1a1a] text-[#fbf8f1] px-1.5 py-0.5 text-[10px] font-mono tracking-tight font-bold rounded-xs">
               STATUS: AVAILABLE FOR HIRE
             </span>
@@ -178,13 +190,13 @@ export default function Navbar() {
           <div className="md:col-span-6 text-center">
             <div className="flex items-center justify-center gap-2 text-[10px] tracking-[0.25em] uppercase font-sans text-[#5c5446] mb-1">
               <span>✦</span>
-              <span>The Independent Portfolio & Chronicle</span>
+              <span>A MODERN DEVELOPER’S BROADSHEET</span>
               <span>✦</span>
             </div>
 
             <Link href="/" className="inline-block group cursor-pointer">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a] font-serif transition-colors group-hover:text-[#7a2020]">
-                THE CHRONICLE
+                A R S
               </h1>
             </Link>
 
@@ -196,21 +208,21 @@ export default function Navbar() {
             </div>
 
             <div className="text-[10px] tracking-widest uppercase font-sans text-[#6b6254] mt-1">
-              EST. 2024 · SPECIAL EDITION FOR CURIOUS MINDS
+              FULL-STACK ENGINEER · SPECIAL EDITION · 2026
             </div>
           </div>
 
-          {/* Right Ear Status / Weather (Desktop) */}
+          {/* Right Ear Status / Live Clock (Desktop) */}
           <div className="hidden md:flex md:col-span-3 flex-col justify-center border-l border-[#1a1a1a]/20 pl-4 text-right">
-            <div className="inline-flex items-center justify-end gap-1.5 text-[10px] font-sans uppercase font-bold tracking-wider text-emerald-800 mb-0.5">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-              Dispatch Status
+            <div className="inline-flex items-center justify-end gap-2 text-xs font-black font-sans uppercase tracking-widest text-red-600 mb-1.5">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
+              </span>
+              <span>LIVE</span>
             </div>
-            <p className="text-xs font-semibold text-[#1a1a1a] leading-tight">
-              AVAILABLE FOR HIRE
-            </p>
-            <p className="text-[11px] text-[#5c5446] leading-snug mt-0.5">
-              Open to contracts, full-time engineering &amp; design.
+            <p className="text-2xl lg:text-3xl xl:text-4xl font-black font-mono tabular-nums text-[#1a1a1a] tracking-tight leading-none">
+              {currentTime || "--:--:-- --"}
             </p>
           </div>
         </div>
@@ -236,12 +248,6 @@ export default function Navbar() {
                   )}
                 </Link>
               ))}
-              <a
-                href="#contact"
-                className="px-6 py-3.5 bg-[#1a1a1a] text-[#fbf8f1] hover:bg-[#7a2020] transition-colors font-serif font-bold tracking-normal lowercase italic text-sm flex items-center justify-center shrink-0 min-h-[46px] cursor-pointer"
-              >
-                Telegram ✉
-              </a>
             </nav>
 
             {/* Mobile / Tablet Header Controls */}
@@ -295,13 +301,48 @@ export default function Navbar() {
 
       {/* Breaking Ticker / Sub-bar */}
       <div className="bg-[#ede7d8] border-b border-[#1a1a1a]/40 text-[11px] font-sans">
-        <div className="max-w-7xl mx-auto px-4 py-1 flex items-center gap-3 overflow-hidden">
-          <div className="shrink-0 flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#7a2020]">
-            <span className="inline-block w-1.5 h-1.5 bg-[#7a2020]"></span>
+        <style>{`
+          @keyframes singleMarquee {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
+          }
+          .ticker-track-single {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: singleMarquee 18s linear infinite;
+            will-change: transform;
+          }
+          .ticker-track-single:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+        <div className="max-w-4xl mx-auto px-4 py-1.5 flex items-center justify-center gap-3 overflow-hidden">
+          <div className="shrink-0 flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#7a2020] bg-[#ede7d8] pr-2 z-10 border-r border-[#1a1a1a]/20">
+            <span className="inline-block w-1.5 h-1.5 bg-[#7a2020] animate-pulse"></span>
             <span>DISPATCH:</span>
           </div>
-          <div className="truncate text-[#3f3930]">
-            <span className="font-semibold text-[#1a1a1a]">EDITORIAL NOTICE:</span> Welcoming visitors to this curated portfolio. Built with modern craftsmanship and classic broadsheet discipline.
+          <div className="relative flex overflow-hidden w-full select-none">
+            <div className="ticker-track-single items-center gap-2.5 text-[#3f3930] cursor-default">
+              <span className="font-medium text-[#2d2820]">
+                Engineering scalable end-to-end systems with
+              </span>
+              <span className="text-[#7a2020] text-[10px]">✦</span>
+              <span className="font-bold text-xs text-[#1a1a1a]">Next.js</span>
+              <span className="text-[#7a2020] text-[10px]">✦</span>
+              <span className="font-bold text-xs text-[#1a1a1a]">NestJS</span>
+              <span className="text-[#7a2020] text-[10px]">✦</span>
+              <span className="font-bold text-xs text-[#1a1a1a]">TypeScript</span>
+              <span className="text-[#7a2020] text-[10px]">✦</span>
+              <span className="font-bold text-xs text-[#1a1a1a]">SQL</span>
+              <span className="text-[#7a2020] text-[10px]">✦</span>
+              <span className="font-bold text-xs text-[#1a1a1a]">NoSQL</span>
+              <span className="text-[#7a2020] text-[10px]">✦</span>
+              <span className="font-bold text-xs text-[#1a1a1a]">Redis</span>
+            </div>
           </div>
         </div>
       </div>
