@@ -105,7 +105,7 @@ export default function Navbar() {
             </span>
             <span className="hidden md:inline text-[#1a1a1a]/40">•</span>
             <span className="bg-[#1a1a1a] text-[#fbf8f1] px-1.5 py-0.5 text-[10px] font-mono tracking-tight font-bold rounded-xs">
-              PRICE: FREE ISSUE
+              STATUS: AVAILABLE FOR HIRE
             </span>
           </div>
         </div>
