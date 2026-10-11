@@ -10,13 +10,13 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "HOME", href: "#top" },
-  { label: "ABOUT", href: "#about" },
-  { label: "PROJECTS", href: "#projects" },
-  { label: "EXPERIENCE", href: "#experience" },
-  { label: "SKILLS", href: "#skills", tag: "HOT" },
-  { label: "BLOG", href: "#blog" },
-  { label: "CONTACT", href: "#contact" },
+  { label: "HOME", href: "/" },
+  { label: "ABOUT", href: "/about" },
+  { label: "PROJECTS", href: "/projects" },
+  { label: "EXPERIENCE", href: "/experience" },
+  { label: "SKILLS", href: "/skills", tag: "HOT" },
+  { label: "BLOG", href: "/blog" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 const DEFAULT_CITY = "Dhaka";
@@ -288,13 +288,13 @@ export default function Navbar() {
           ))}
           <div className="pt-3 pb-1 flex justify-between items-center text-xs font-serif italic text-[#5c5446]">
             <span>Vol. XXIV — Special Edition</span>
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="bg-[#1a1a1a] text-[#fbf8f1] px-3 py-1 font-sans not-italic font-bold text-[11px]"
             >
               DISPATCH TELEGRAM ✉
-            </a>
+            </Link>
           </div>
         </div>
       )}
