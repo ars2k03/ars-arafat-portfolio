@@ -3,13 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { site } from "@/lib/site";
 
 export default function Homepage() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
-  const email = "arafat.contact@example.com"; // Replace with your primary email
+  const email = site.email;
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -86,7 +87,7 @@ export default function Homepage() {
 
                 {/* GitHub Button */}
                 <a
-                  href="https://github.com"
+                  href={site.github.url}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#f4efe2] hover:bg-[#1a1a1a] hover:text-[#fbf8f1] text-[#1a1a1a] border border-[#1a1a1a] shadow-[2px_2px_0px_#1a1a1a] text-xs font-sans font-bold tracking-wider uppercase transition-all duration-150 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer group"
@@ -99,7 +100,7 @@ export default function Homepage() {
 
                 {/* LinkedIn Button */}
                 <a
-                  href="https://linkedin.com"
+                  href={site.linkedin.url}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#f4efe2] hover:bg-[#1a1a1a] hover:text-[#fbf8f1] text-[#1a1a1a] border border-[#1a1a1a] shadow-[2px_2px_0px_#1a1a1a] text-xs font-sans font-bold tracking-wider uppercase transition-all duration-150 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer group"
@@ -156,7 +157,7 @@ export default function Homepage() {
                 {/* Base Layer: Vintage Newspaper Engraving */}
                 <Image
                   src="/profile.jpg"
-                  alt="Arafat Rahman - Lead Full-Stack Engineer"
+                  alt={`${site.name} - ${site.role}`}
                   fill
                   preload
                   sizes="(max-width: 768px) 100vw, 420px"
@@ -183,7 +184,7 @@ export default function Homepage() {
                 >
                   <Image
                     src="/profile.jpg"
-                    alt="Arafat Rahman - Lead Full-Stack Engineer"
+                    alt={`${site.name} - ${site.role}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 420px"
                     className="object-cover object-top"

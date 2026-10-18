@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "The Chronicle | Editorial & Newspaper Portfolio",
-  description: "A clean broadsheet and editorial style portfolio dispatch.",
+  title: {
+    default: "Arafat Rahman | Full-Stack Software Engineer",
+    template: "%s | Arafat Rahman",
+  },
+  description: "Portfolio of Arafat Rahman, a full-stack software engineer building web and mobile applications.",
 };
 
 export default function RootLayout({

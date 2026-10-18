@@ -189,7 +189,7 @@ export default function Navbar() {
           <div className="md:col-span-6 text-center">
             <div className="flex items-center justify-center gap-2 text-[10px] tracking-[0.25em] uppercase font-sans text-[#5c5446] mb-1">
               <span>✦</span>
-              <span>A MODERN DEVELOPER’S BROADSHEET</span>
+              <span>A SOFTWARE ENGINEER’S BROADSHEET</span>
               <span>✦</span>
             </div>
 
