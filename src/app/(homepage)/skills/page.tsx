@@ -321,28 +321,6 @@ export default function SkillsPage() {
   return (
     <section className="w-full flex-1 bg-[#fbf8f1] text-[#1a1a1a] font-serif pt-4 sm:pt-8 pb-16">
       <div className="max-w-7xl mx-auto px-4 w-full">
-        
-        {/* Top Folio Rule Header */}
-        <div className="relative border-y-2 border-[#1a1a1a] py-2 mb-8">
-          <div className="absolute inset-x-0 top-[2px] border-t border-[#1a1a1a]/20"></div>
-          <div className="absolute inset-x-0 bottom-[2px] border-b border-[#1a1a1a]/20"></div>
-
-          <div className="flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-wider font-sans text-[#4a4336] px-1">
-            <div className="flex items-center gap-2 font-mono text-[11px] font-semibold text-[#1a1a1a]">
-              <span>SECTION IV · TECHNICAL REPERTORY</span>
-              <span className="text-[#1a1a1a]/30">•</span>
-              <span>SPECIAL BROADSHEET</span>
-            </div>
-
-            <div className="hidden md:block italic font-serif text-[#5c5446] normal-case text-xs sm:text-sm">
-              &ldquo;Battle-tested tools, language runtimes, and distributed architectures&rdquo;
-            </div>
-
-            <div className="font-mono text-[11px] font-bold text-[#7a2020] bg-[#ede7d8] px-2 py-0.5 border border-[#1a1a1a]/20">
-              AUDITED TECH STACK · 2026
-            </div>
-          </div>
-        </div>
 
         {/* Lead Headline Banner */}
         <div className="border-b-2 border-[#1a1a1a] pb-8 mb-10">
