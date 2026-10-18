@@ -60,6 +60,7 @@ export default function Navbar() {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
+      setCurrentDate(formatNewspaperDate(now));
       setCurrentTime(
         now.toLocaleTimeString("en-US", {
           hour: "2-digit",
@@ -76,8 +77,6 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setCurrentDate(formatNewspaperDate(new Date()));
-
     const fetchWeather = async (city: string) => {
       try {
         const res = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);

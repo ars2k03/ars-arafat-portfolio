@@ -343,7 +343,7 @@ export default function SkillsPage() {
 
         {/* Categories Stack Grid */}
         <div className="space-y-12">
-          {categories.map((cat, idx) => (
+          {categories.map((cat) => (
             <div key={cat.title} className="space-y-4">
               
               {/* Category Header Rule */}

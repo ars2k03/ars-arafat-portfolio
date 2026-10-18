@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { unstable_rethrow } from "next/navigation";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -35,14 +36,7 @@ export async function GET(request: Request) {
       condition,
     });
   } catch (error: unknown) {
-    if (
-      typeof error === "object" &&
-      error !== null &&
-      "digest" in error &&
-      (error as { digest: string }).digest === "NEXT_PRERENDER_INTERRUPTED"
-    ) {
-      throw error;
-    }
+    unstable_rethrow(error);
 
     console.error("Weather API error:", error);
 

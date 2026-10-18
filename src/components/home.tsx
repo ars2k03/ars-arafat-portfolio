@@ -158,7 +158,7 @@ export default function Homepage() {
                   src="/profile.jpg"
                   alt="Arafat Rahman - Lead Full-Stack Engineer"
                   fill
-                  priority
+                  preload
                   sizes="(max-width: 768px) 100vw, 420px"
                   className="object-cover object-top grayscale contrast-125 sepia-[0.25] brightness-[0.96]"
                 />
