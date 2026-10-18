@@ -70,14 +70,6 @@ export default function ContactForm({ email }: ContactFormProps) {
           <span>Send Message</span>
           <span>→</span>
         </button>
-
-        <button
-          type="button"
-          onClick={handleCopyEmail}
-          className="text-xs font-mono font-bold uppercase tracking-wider text-[#4a4336] hover:text-[#7a2020] underline underline-offset-4 cursor-pointer"
-        >
-          {copied ? "✓ Email copied" : "or copy email address"}
-        </button>
       </div>
     </form>
   );

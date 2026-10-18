@@ -55,6 +55,7 @@ export default function SkillsPage() {
         { name: "PostgreSQL", logo: "/skills/postgresql.svg" },
         { name: "MongoDB", logo: "/skills/mongodb.svg" },
         { name: "Redis", logo: "/skills/redis.svg" },
+        { name: "Supabase", logo: "/skills/supabase.svg" },
       ],
     },
     {

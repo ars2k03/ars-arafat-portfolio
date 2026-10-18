@@ -5,7 +5,7 @@ import { site } from "@/utils/site";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Selected projects by Arafat Rahman: web applications, backend templates and open-source npm packages.",
+  description: "Selected projects by Arafat Rahman: production web platforms and open-source npm packages.",
 };
 
 interface ProjectLink {
@@ -21,7 +21,6 @@ interface Tech {
 interface Project {
   title: string;
   type: string;
-  description: string;
   highlights: string[];
   stack: Tech[];
   links: ProjectLink[];
@@ -31,55 +30,62 @@ const tech = {
   nextjs: { name: "Next.js", logo: "/skills/nextjs.svg" },
   react: { name: "React", logo: "/skills/react.svg" },
   typescript: { name: "TypeScript", logo: "/skills/typescript.svg" },
-  tailwind: { name: "Tailwind CSS", logo: "/skills/tailwindcss.svg" },
   nestjs: { name: "NestJS", logo: "/skills/nestjs.svg" },
   prisma: { name: "Prisma", logo: "/skills/prisma.svg" },
   postgresql: { name: "PostgreSQL", logo: "/skills/postgresql.svg" },
   nodejs: { name: "Node.js", logo: "/skills/nodejs.svg" },
+  redis: { name: "Redis", logo: "/skills/redis.svg" },
+  githubactions: { name: "CI/CD", logo: "/skills/githubactions.svg" },
+  supabase: { name: "Supabase", logo: "/skills/supabase.svg" },
+  cloudflare: { name: "Cloudflare", logo: "/skills/cloudflare.svg" },
 } satisfies Record<string, Tech>;
 
 const projects: Project[] = [
   {
-    title: "Bangladesh NID Verification",
-    type: "Web Application",
-    description:
-      "An identity verification web app for Bangladeshi National ID cards, integrated with the Didit identity verification API.",
+    title: "WA Gateway",
+    type: "WhatsApp OTP SaaS · Solo Project",
     highlights: [
-      "OCR extraction of name, NID number, date of birth and address from Smart and regular NID cards",
-      "3D liveness detection and biometric face matching against the NID portrait",
-      "Fully localised Bengali (bn-BD) interface",
-      "API keys and session checks kept on the server",
+      "WhatsApp OTP API for developers, built and run solo",
+      "Pair a number by QR, get an API key, send OTPs with one call",
+      "Usage quotas, custom templates and a developer dashboard",
     ],
-    stack: [tech.nextjs, tech.react, tech.typescript, tech.tailwind],
+    stack: [tech.nextjs, tech.nestjs, tech.typescript, tech.postgresql, tech.prisma, tech.redis, tech.supabase],
     links: [
-      { label: "Live Demo", href: "https://nid-ars.vercel.app" },
-      { label: "Source", href: `${site.github.url}/nid` },
+      { label: "Live Site", href: "https://wa.ars2k03.online" },
+      { label: "API Docs", href: "https://wa.ars2k03.online/docs" },
     ],
   },
   {
-    title: "ars-backend-template",
-    type: "Backend Starter Template",
-    description:
-      "A production-ready NestJS starter that removes repetitive backend setup and keeps a consistent, scalable structure across projects.",
+    title: "Chakri.ai",
+    type: "AI Job Platform · Private Codebase",
     highlights: [
-      "Pre-configured NestJS architecture with Prisma ORM and PostgreSQL",
-      "Fast linting with Oxlint and testing with Vitest",
-      "Environment template and ready-to-run development scripts",
+      "AI-powered job platform for Bangladesh, live in beta",
+      "AI job matching, CV analysis and a recruiting assistant",
+      "Dashboards for candidates and employers, with bKash payments",
     ],
-    stack: [tech.nestjs, tech.prisma, tech.postgresql, tech.typescript],
-    links: [{ label: "Source", href: `${site.github.url}/ars-backend-template` }],
+    stack: [tech.nextjs, tech.nestjs, tech.typescript, tech.postgresql, tech.prisma, tech.redis, tech.supabase, tech.cloudflare],
+    links: [{ label: "Live Site", href: "https://chakriai.com" }],
+  },
+  {
+    title: "JoldiMart",
+    type: "Quick-Commerce Platform · Private Codebase",
+    highlights: [
+      "10-minute grocery delivery platform in Dhaka",
+      "Phone OTP login, cart, checkout and live order tracking",
+      "Supports Cash on Delivery, bKash and Nagad",
+    ],
+    stack: [tech.nextjs, tech.nestjs, tech.typescript, tech.postgresql, tech.prisma, tech.redis, tech.supabase, tech.cloudflare, tech.githubactions],
+    links: [{ label: "Live Site", href: "https://joldimart.com" }],
   },
   {
     title: "ars-facebook-auth",
     type: "Open-Source npm Package",
-    description:
-      "A lightweight library that verifies Facebook user access tokens and returns a normalised user profile through one typed function.",
     highlights: [
-      "Confirms the token was issued for your Facebook app",
-      "Generates appsecret_proof and supports custom Graph API versions",
-      "Fully typed with zero runtime dependencies; works with NestJS",
+      "npm package that verifies Facebook access tokens",
+      "Returns a clean, typed user profile from one function",
+      "Zero runtime dependencies",
     ],
-    stack: [tech.typescript, tech.nodejs, tech.nestjs],
+    stack: [tech.typescript, tech.nodejs],
     links: [
       { label: "npm", href: "https://www.npmjs.com/package/ars-facebook-auth" },
       { label: "Source", href: `${site.github.url}/ars-facebook-auth` },
@@ -100,7 +106,7 @@ export default function ProjectsPage() {
             </h1>
 
             <p className="text-base sm:text-xl text-[#4a4336] font-serif italic leading-relaxed">
-              Applications, backend tooling and open-source packages I&apos;ve designed and built.
+              Production platforms and open-source packages I&apos;ve worked on.
             </p>
           </div>
         </div>
@@ -122,11 +128,7 @@ export default function ProjectsPage() {
                   </h2>
                 </div>
 
-                <p className="text-base text-[#2e2a22] leading-relaxed">
-                  {project.description}
-                </p>
-
-                <ul className="space-y-1.5 text-sm text-[#4a4336] leading-relaxed">
+                <ul className="space-y-2 text-base text-[#2e2a22] leading-relaxed">
                   {project.highlights.map((point) => (
                     <li key={point} className="flex gap-2">
                       <span className="text-[#7a2020] shrink-0">▸</span>
@@ -136,19 +138,19 @@ export default function ProjectsPage() {
                 </ul>
               </div>
 
-              <div className="lg:col-span-5 flex flex-col justify-between gap-6 lg:border-l lg:border-[#1a1a1a]/20 lg:pl-6">
-                <div>
+              <div className="lg:col-span-5 flex flex-col gap-6 lg:border-l lg:border-[#1a1a1a]/20 lg:pl-6">
+                <div className="flex-1 flex flex-col">
                   <h3 className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#4a4336] mb-3">
                     Built With
                   </h3>
-                  <ul className="flex flex-wrap gap-2.5">
+                  <ul className="flex-1 grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-4 auto-rows-fr gap-2">
                     {project.stack.map((t) => (
                       <li
                         key={t.name}
-                        className="flex items-center gap-2 px-3 py-1.5 bg-[#fbf8f1] border border-[#1a1a1a]/40"
+                        className="flex flex-col items-center justify-center gap-1.5 px-2 py-3 bg-[#fbf8f1] border border-[#1a1a1a]/40 text-center"
                       >
-                        <Image src={t.logo} alt="" width={20} height={20} className="w-5 h-5 object-contain" />
-                        <span className="text-sm font-bold font-serif text-[#1a1a1a]">{t.name}</span>
+                        <Image src={t.logo} alt="" width={28} height={28} className="w-7 h-7 object-contain" />
+                        <span className="text-xs sm:text-sm font-bold font-serif text-[#1a1a1a]">{t.name}</span>
                       </li>
                     ))}
                   </ul>
