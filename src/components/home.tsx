@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { site } from "@/utils/site";
 
 export default function Homepage() {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -32,10 +32,10 @@ export default function Homepage() {
 
         {/* Main 2-Column Hero Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
+
           {/* Left Column: Headline, Bio & Actions (7 cols) */}
           <div className="lg:col-span-7 flex flex-col">
-            
+
             <div className="space-y-3">
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-black font-serif text-[#1a1a1a] tracking-tight leading-[1.04]">
                 Arafat Rahman
@@ -139,7 +139,7 @@ export default function Homepage() {
           {/* Right Column: Newsprint Engraving Portrait Frame (5 cols) */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="w-full max-w-sm sm:max-w-md lg:max-w-md bg-[#f4efe2] border-2 border-[#1a1a1a] p-3 sm:p-4 shadow-[6px_6px_0px_#1a1a1a] relative">
-              
+
               {/* Corner Vintage Ornaments */}
               <div className="absolute top-1 left-1 w-3 h-3 border-t-2 border-l-2 border-[#1a1a1a] pointer-events-none"></div>
               <div className="absolute top-1 right-1 w-3 h-3 border-t-2 border-r-2 border-[#1a1a1a] pointer-events-none"></div>

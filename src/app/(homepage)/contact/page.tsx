@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
-import { site } from "@/lib/site";
+import { site } from "@/utils/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -67,12 +67,6 @@ export default function ContactPage() {
         {/* Lead Headline Banner */}
         <div className="border-b-2 border-[#1a1a1a] pb-8 mb-10">
           <div className="max-w-4xl">
-            <div className="inline-block mb-3">
-              <span className="font-mono text-xs uppercase tracking-[0.25em] font-bold text-[#7a2020] bg-[#ede7d8] px-2.5 py-1 border border-[#1a1a1a]/25">
-                CONTACT
-              </span>
-            </div>
-
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-serif text-[#1a1a1a] tracking-tight leading-[1.08] mb-4">
               Let&apos;s Work Together
             </h1>
