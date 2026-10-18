@@ -81,11 +81,16 @@ export async function sendContactMessage(_prev: ContactState, formData: FormData
   }
 
   const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL;
-  if (!process.env.RESEND_API_KEY || !to || !from) {
+  // Accepts either "contact@domain" or "Name <contact@domain>"; only the address is used.
+  const fromAddress = process.env.CONTACT_FROM_EMAIL?.match(/<([^>]+)>/)?.[1] ?? process.env.CONTACT_FROM_EMAIL?.trim();
+  if (!process.env.RESEND_API_KEY || !to || !fromAddress) {
     log("email service not configured");
     return { status: "error", message: MESSAGES.unavailable, id, fields };
   }
+
+  // Show who wrote in, e.g. "Rahim Ahmed via ars2k03.online", so the inbox is scannable.
+  const senderName = name.replace(/["<>\\\r\n]/g, "").slice(0, 60);
+  const from = `"${senderName} via ${fromAddress.split("@")[1]}" <${fromAddress}>`;
 
   try {
     const { error } = await resend.emails.send({
