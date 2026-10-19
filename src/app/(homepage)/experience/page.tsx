@@ -14,9 +14,10 @@ interface RoleLink {
 interface Role {
   title: string;
   organization: string;
+  about: string;
   period: string;
+  employmentType?: string;
   location: string;
-  summary: string;
   links: RoleLink[];
 }
 
@@ -25,11 +26,27 @@ const roles: Role[] = [
   {
     title: "Full-Stack Software Engineer",
     organization: "LuminexLabs",
-    period: "2026 — Present",
+    about: "Independent software studio building web, AI and SaaS products for clients",
+    period: "Since 2026",
+    employmentType: "Part-time",
     location: "Remote",
-    summary:
-      "Building web, AI and SaaS products for clients at an independent software studio, working across the backend, frontend and deployment.",
-    links: [{ label: "Company Website", href: "https://luminexlabs.io" }],
+    links: [{ label: "Website", href: "https://luminexlabs.io" }],
+  },
+  {
+    title: "Founding Full-Stack Engineer",
+    organization: "JoldiMart",
+    about: "Quick-commerce startup delivering groceries in Dhaka within 10 minutes",
+    period: "Since Sep 2026",
+    location: "Remote",
+    links: [{ label: "Live Site", href: "https://joldimart.com" }],
+  },
+  {
+    title: "Founding Full-Stack Engineer",
+    organization: "Chakri.ai",
+    about: "AI-powered hiring platform for the Bangladesh job market, in public beta",
+    period: "Since Jun 2026",
+    location: "Remote",
+    links: [{ label: "Live Site", href: "https://chakriai.com" }],
   },
 ];
 
@@ -60,24 +77,25 @@ export default function ExperiencePage() {
               <article className="bg-[#f4efe2] border-2 border-[#1a1a1a] shadow-[5px_5px_0px_#1a1a1a]">
                 <header className="flex flex-wrap items-center justify-between gap-2 px-5 sm:px-7 py-2.5 border-b border-[#1a1a1a]/30 text-[11px] font-mono font-bold uppercase tracking-widest">
                   <span className="text-[#7a2020]">{role.period}</span>
-                  <span className="text-[#4a4336]">{role.location}</span>
+                  <span className="text-[#4a4336]">
+                    {[role.employmentType, role.location].filter(Boolean).join(" · ")}
+                  </span>
                 </header>
 
-                <div className="p-5 sm:p-7 space-y-4">
+                <div className="p-5 sm:p-7 sm:grid sm:grid-cols-[1fr_auto] sm:gap-x-6">
                   <div>
                     <h2 className="text-2xl sm:text-3xl font-black font-serif text-[#1a1a1a] tracking-tight">
-                      {role.title}
+                      {role.organization}
                     </h2>
                     <p className="text-base sm:text-lg font-bold font-serif text-[#7a2020] mt-1">
-                      {role.organization}
+                      {role.title}
+                    </p>
+                    <p className="text-sm sm:text-base italic font-serif text-[#5c5446] mt-2">
+                      {role.about}
                     </p>
                   </div>
 
-                  <p className="text-base text-[#2e2a22] leading-relaxed">
-                    {role.summary}
-                  </p>
-
-                  <div className="flex flex-wrap gap-3 pt-2">
+                  <div className="flex flex-wrap gap-3 mt-4 sm:mt-0 sm:col-start-2 sm:row-start-1 sm:self-start">
                     {role.links.map((link, i) => (
                       <a
                         key={link.label}

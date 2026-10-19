@@ -55,7 +55,6 @@ export default function SkillsPage() {
         { name: "PostgreSQL", logo: "/skills/postgresql.svg" },
         { name: "MongoDB", logo: "/skills/mongodb.svg" },
         { name: "Redis", logo: "/skills/redis.svg" },
-        { name: "Supabase", logo: "/skills/supabase.svg" },
       ],
     },
     {
@@ -74,10 +73,11 @@ export default function SkillsPage() {
       ],
     },
     {
-      title: "Cloud & Hosting",
+      title: "Cloud & Platforms",
       icon: "☁️",
       items: [
         { name: "Cloudflare", logo: "/skills/cloudflare.svg" },
+        { name: "Supabase", logo: "/skills/supabase.svg" },
       ],
     },
     {
@@ -124,7 +124,7 @@ export default function SkillsPage() {
               </div>
 
               {/* Grid of Skill Cards */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 pt-1">
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 pt-1">
                 {cat.items.map((tech) => (
                   <div
                     key={tech.name}
