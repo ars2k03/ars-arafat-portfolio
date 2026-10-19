@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Marquee from "@/components/Marquee";
 
 interface NavItem {
   label: string;
@@ -298,49 +299,28 @@ export default function Navbar() {
 
       {/* Breaking Ticker / Sub-bar */}
       <div className="bg-[#ede7d8] border-b border-[#1a1a1a]/40 text-xs font-sans">
-        <style>{`
-          @keyframes singleMarquee {
-            0% {
-              transform: translateX(100%);
-            }
-            100% {
-              transform: translateX(-100%);
-            }
-          }
-          .ticker-track-single {
-            display: inline-flex;
-            white-space: nowrap;
-            animation: singleMarquee 18s linear infinite;
-            will-change: transform;
-          }
-          .ticker-track-single:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
         <div className="max-w-4xl mx-auto px-4 py-1.5 flex items-center justify-center gap-3 overflow-hidden">
           <div className="shrink-0 flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#7a2020] bg-[#ede7d8] pr-2 z-10 border-r border-[#1a1a1a]/20">
             <span className="inline-block w-1.5 h-1.5 bg-[#7a2020] animate-pulse"></span>
             <span>DISPATCH:</span>
           </div>
-          <div className="relative flex overflow-hidden w-full select-none">
-            <div className="ticker-track-single items-center gap-2.5 text-[#2e2a22] cursor-default">
-              <span className="font-medium text-[#2d2820]">
-                Engineering scalable end-to-end systems with
-              </span>
-              <span className="text-[#7a2020] text-[10px]">✦</span>
-              <span className="font-bold text-xs text-[#1a1a1a]">Next.js</span>
-              <span className="text-[#7a2020] text-[10px]">✦</span>
-              <span className="font-bold text-xs text-[#1a1a1a]">NestJS</span>
-              <span className="text-[#7a2020] text-[10px]">✦</span>
-              <span className="font-bold text-xs text-[#1a1a1a]">TypeScript</span>
-              <span className="text-[#7a2020] text-[10px]">✦</span>
-              <span className="font-bold text-xs text-[#1a1a1a]">SQL</span>
-              <span className="text-[#7a2020] text-[10px]">✦</span>
-              <span className="font-bold text-xs text-[#1a1a1a]">NoSQL</span>
-              <span className="text-[#7a2020] text-[10px]">✦</span>
-              <span className="font-bold text-xs text-[#1a1a1a]">Redis</span>
-            </div>
-          </div>
+          <Marquee className="items-center gap-2.5 text-[13px] text-[#1a1a1a] cursor-default">
+            <span className="font-semibold text-[#1a1a1a]">
+              Engineering scalable end-to-end systems with
+            </span>
+            <span className="text-[#7a2020] text-[10px]">✦</span>
+            <span className="font-bold text-[#1a1a1a]">Next.js</span>
+            <span className="text-[#7a2020] text-[10px]">✦</span>
+            <span className="font-bold text-[#1a1a1a]">NestJS</span>
+            <span className="text-[#7a2020] text-[10px]">✦</span>
+            <span className="font-bold text-[#1a1a1a]">TypeScript</span>
+            <span className="text-[#7a2020] text-[10px]">✦</span>
+            <span className="font-bold text-[#1a1a1a]">SQL</span>
+            <span className="text-[#7a2020] text-[10px]">✦</span>
+            <span className="font-bold text-[#1a1a1a]">NoSQL</span>
+            <span className="text-[#7a2020] text-[10px]">✦</span>
+            <span className="font-bold text-[#1a1a1a]">Redis</span>
+          </Marquee>
         </div>
       </div>
     </header>
