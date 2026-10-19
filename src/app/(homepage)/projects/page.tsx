@@ -151,7 +151,7 @@ export default function ProjectsPage() {
               <div className={`${project.image ? "lg:col-span-7" : "lg:col-span-12"} flex flex-col gap-6`}>
                 <div className="space-y-4">
                   <div>
-                    <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#7a2020]">
+                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#7a2020]">
                       {String(index + 1).padStart(2, "0")} · {project.type}
                     </span>
                     <h2 className="text-2xl sm:text-3xl font-black font-serif text-[#1a1a1a] tracking-tight mt-1">
@@ -170,7 +170,7 @@ export default function ProjectsPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#4a4336] mb-3">
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-[#4a4336] mb-3">
                     Built With
                   </h3>
                   <ul className="grid grid-cols-3 sm:grid-cols-5 auto-rows-fr gap-2">
@@ -209,7 +209,7 @@ export default function ProjectsPage() {
             <h3 className="text-xl font-bold font-serif text-[#1a1a1a]">
               More on GitHub
             </h3>
-            <p className="text-sm text-[#5c5446] italic font-serif">
+            <p className="text-sm text-[#4a4336] italic font-serif">
               Browse all repositories and recent activity.
             </p>
           </div>

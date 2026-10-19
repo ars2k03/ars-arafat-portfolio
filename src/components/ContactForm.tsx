@@ -32,8 +32,8 @@ export default function ContactForm({ email }: ContactFormProps) {
   }, [state]);
 
   const inputClass =
-    "w-full px-3.5 py-2.5 bg-[#fbf8f1] border border-[#1a1a1a] text-[#1a1a1a] font-sans text-sm placeholder:text-[#8a8070] focus:outline-none focus:shadow-[3px_3px_0px_#7a2020] transition-shadow";
-  const labelClass = "block mb-1.5 text-[11px] font-mono font-bold uppercase tracking-widest text-[#4a4336]";
+    "w-full px-3.5 py-2.5 bg-[#fbf8f1] border border-[#1a1a1a] text-[#1a1a1a] font-sans text-sm placeholder:text-[#6b6254] focus:outline-none focus:shadow-[3px_3px_0px_#7a2020] transition-shadow";
+  const labelClass = "block mb-1.5 text-xs font-mono font-bold uppercase tracking-widest text-[#4a4336]";
 
   return (
     <>

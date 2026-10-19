@@ -97,7 +97,7 @@ export default function ContactPage() {
                   {channel.icon}
                 </span>
                 <span className="min-w-0">
-                  <span className="block text-[11px] font-mono font-bold uppercase tracking-widest text-[#7a2020]">
+                  <span className="block text-xs font-mono font-bold uppercase tracking-widest text-[#7a2020]">
                     {channel.label}
                   </span>
                   <span className="block text-base sm:text-lg font-bold font-serif text-[#1a1a1a] truncate group-hover:text-[#7a2020] transition-colors">

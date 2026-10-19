@@ -75,7 +75,7 @@ export default function ExperiencePage() {
               <span className="absolute -left-[9px] top-3 w-4 h-4 bg-[#7a2020] border-2 border-[#1a1a1a]" />
 
               <article className="bg-[#f4efe2] border-2 border-[#1a1a1a] shadow-[5px_5px_0px_#1a1a1a]">
-                <header className="flex flex-wrap items-center justify-between gap-2 px-5 sm:px-7 py-2.5 border-b border-[#1a1a1a]/30 text-[11px] font-mono font-bold uppercase tracking-widest">
+                <header className="flex flex-wrap items-center justify-between gap-2 px-5 sm:px-7 py-2.5 border-b border-[#1a1a1a]/30 text-xs font-mono font-bold uppercase tracking-widest">
                   <span className="text-[#7a2020]">{role.period}</span>
                   <span className="text-[#4a4336]">
                     {[role.employmentType, role.location].filter(Boolean).join(" · ")}
@@ -90,7 +90,7 @@ export default function ExperiencePage() {
                     <p className="text-base sm:text-lg font-bold font-serif text-[#7a2020] mt-1">
                       {role.title}
                     </p>
-                    <p className="text-sm sm:text-base italic font-serif text-[#5c5446] mt-2">
+                    <p className="text-sm sm:text-base italic font-serif text-[#4a4336] mt-2">
                       {role.about}
                     </p>
                   </div>
@@ -125,7 +125,7 @@ export default function ExperiencePage() {
             <h3 className="text-xl font-bold font-serif text-[#1a1a1a]">
               Hiring for a software engineering role?
             </h3>
-            <p className="text-sm text-[#5c5446] italic font-serif">
+            <p className="text-sm text-[#4a4336] italic font-serif">
               Download my resume or reach out directly.
             </p>
           </div>

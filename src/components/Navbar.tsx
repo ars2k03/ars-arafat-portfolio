@@ -135,7 +135,7 @@ export default function Navbar() {
   return (
     <header className="w-full bg-[#fbf8f1] text-[#1a1a1a] border-b-2 border-[#1a1a1a] font-serif">
       {/* Top Folio / Ears Bar */}
-      <div className="border-b border-[#1a1a1a]/30 text-[11px] uppercase tracking-wider text-[#3d3830]">
+      <div className="border-b border-[#1a1a1a]/30 text-xs uppercase tracking-wider text-[#2e2a22]">
         <div className="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-2">
           {/* Left Ear */}
           <div className="flex items-center gap-2 sm:gap-3">
@@ -144,7 +144,7 @@ export default function Navbar() {
               {visitorStats ? String(visitorStats.count).padStart(2, "0") : "—"}
             </span>
             <span className="text-[#1a1a1a]/40">•</span>
-            <span className="text-[#3d3830] font-semibold">EST. 2026</span>
+            <span className="text-[#2e2a22] font-semibold">EST. 2026</span>
           </div>
 
           {/* Center Date */}
@@ -172,20 +172,20 @@ export default function Navbar() {
         <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
           {/* Left Ear Quote / Box (Desktop) */}
           <div className="hidden md:flex md:col-span-3 flex-col justify-center border-r border-[#1a1a1a]/20 pr-4 text-left">
-            <p className="text-[10px] font-sans uppercase font-bold tracking-widest text-[#7a2020] mb-0.5">
+            <p className="text-xs font-sans uppercase font-bold tracking-widest text-[#7a2020] mb-1">
               ★ Daily Quotation
             </p>
-            <p className="text-xs italic text-[#4a443a] leading-snug">
+            <p className="text-sm italic text-[#2e2a22] leading-snug">
               &ldquo;Simplicity is prerequisite for reliability.&rdquo;
             </p>
-            <span className="text-[10px] text-[#736b5e] mt-1 font-mono">
+            <span className="text-xs text-[#4a4336] mt-1 font-mono">
               — Edsger W. Dijkstra
             </span>
           </div>
 
           {/* Central Newspaper Title */}
           <div className="md:col-span-6 text-center">
-            <div className="flex items-center justify-center gap-2 text-[10px] tracking-[0.25em] uppercase font-sans text-[#5c5446] mb-1">
+            <div className="flex items-center justify-center gap-2 text-xs tracking-[0.1em] sm:tracking-[0.2em] uppercase font-sans text-[#4a4336] mb-1">
               <span>✦</span>
               <span>A SOFTWARE ENGINEER’S BROADSHEET</span>
               <span>✦</span>
@@ -198,13 +198,13 @@ export default function Navbar() {
             </Link>
 
             {/* Subtitle Ribbon */}
-            <div className="mt-1 flex items-center justify-center gap-3 text-xs sm:text-sm italic text-[#3f3930]">
+            <div className="mt-1 flex items-center justify-center gap-3 text-sm sm:text-base italic text-[#2e2a22]">
               <span className="h-[1px] w-8 sm:w-16 bg-[#1a1a1a]/40 inline-block"></span>
               <span>&ldquo;All the Code That&apos;s Fit to Ship&rdquo;</span>
               <span className="h-[1px] w-8 sm:w-16 bg-[#1a1a1a]/40 inline-block"></span>
             </div>
 
-            <div className="text-[10px] tracking-widest uppercase font-sans text-[#6b6254] mt-1">
+            <div className="text-xs tracking-widest uppercase font-sans text-[#4a4336] mt-1">
               FULL-STACK ENGINEER · SPECIAL EDITION · 2026
             </div>
           </div>
@@ -283,7 +283,7 @@ export default function Navbar() {
               )}
             </Link>
           ))}
-          <div className="pt-3 pb-1 flex justify-between items-center text-xs font-serif italic text-[#5c5446]">
+          <div className="pt-3 pb-1 flex justify-between items-center text-sm font-serif italic text-[#4a4336]">
             <span>Vol. XXIV — Special Edition</span>
             <Link
               href="/contact"
@@ -297,7 +297,7 @@ export default function Navbar() {
       )}
 
       {/* Breaking Ticker / Sub-bar */}
-      <div className="bg-[#ede7d8] border-b border-[#1a1a1a]/40 text-[11px] font-sans">
+      <div className="bg-[#ede7d8] border-b border-[#1a1a1a]/40 text-xs font-sans">
         <style>{`
           @keyframes singleMarquee {
             0% {
@@ -323,7 +323,7 @@ export default function Navbar() {
             <span>DISPATCH:</span>
           </div>
           <div className="relative flex overflow-hidden w-full select-none">
-            <div className="ticker-track-single items-center gap-2.5 text-[#3f3930] cursor-default">
+            <div className="ticker-track-single items-center gap-2.5 text-[#2e2a22] cursor-default">
               <span className="font-medium text-[#2d2820]">
                 Engineering scalable end-to-end systems with
               </span>

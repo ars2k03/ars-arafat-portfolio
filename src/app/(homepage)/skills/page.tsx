@@ -154,7 +154,7 @@ export default function SkillsPage() {
             <h3 className="text-xl font-bold font-serif text-[#1a1a1a]">
               Looking to deploy these technologies into your stack?
             </h3>
-            <p className="text-sm text-[#5c5446] italic font-serif">
+            <p className="text-sm text-[#4a4336] italic font-serif">
               Available for full-time software engineering roles and targeted technical consulting.
             </p>
           </div>
