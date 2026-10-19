@@ -103,7 +103,7 @@ src/
 │   └── api/
 │       ├── visitors/    # Visitor counter (Redis)
 │       └── weather/     # Weather proxy (WeatherAPI)
-├── components/          # Navbar, PageFlip, Marquee, ContactForm, TechTile
+├── components/          # Navbar, Marquee, ContactForm, TechTile
 ├── lib/                 # Redis client, contact Server Action
 └── utils/               # Site info, navigation, volume numbering
 public/                  # Profile photo, project screenshots, skill logos, resume
