@@ -64,7 +64,6 @@ export default function ContactPage() {
     <section className="w-full flex-1 bg-[#fbf8f1] text-[#1a1a1a] font-serif pt-4 sm:pt-8 pb-16">
       <div className="max-w-7xl mx-auto px-4 w-full">
 
-        {/* Lead Headline Banner */}
         <div className="border-b-2 border-[#1a1a1a] pb-8 mb-10">
           <div className="max-w-4xl">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-serif text-[#1a1a1a] tracking-tight leading-[1.08] mb-4">
@@ -79,7 +78,6 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-          {/* Left Column: Direct Channels */}
           <div className="lg:col-span-5 space-y-4">
             <h2 className="text-2xl sm:text-3xl font-black font-serif text-[#1a1a1a] tracking-tight border-b border-[#1a1a1a]/40 pb-2">
               Reach Me Directly
@@ -115,7 +113,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right Column: Message Form */}
           <div className="lg:col-span-7">
             <ContactForm email={email} />
           </div>

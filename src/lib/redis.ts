@@ -6,7 +6,7 @@ if (!redisUrl) {
   console.warn("[redis] REDIS_URL configuration is missing. Defaulting to local instance.");
 }
 
-// Global singleton pattern to prevent multiple open connections during Fast Refresh in development
+// reuse one client across hot reloads in dev
 const globalForRedis = global as unknown as { redis?: Redis };
 
 export const redis =
@@ -17,7 +17,6 @@ export const redis =
     connectTimeout: 5000,
   });
 
-// Cache connection in development mode only
 if (process.env.NODE_ENV !== "production") {
   globalForRedis.redis = redis;
 }

@@ -21,7 +21,6 @@ interface Role {
   links: RoleLink[];
 }
 
-// Newest first. Add company roles and internships here as they happen.
 const roles: Role[] = [
   {
     title: "Full-Stack Software Engineer",
@@ -55,7 +54,6 @@ export default function ExperiencePage() {
     <section className="w-full flex-1 bg-[#fbf8f1] text-[#1a1a1a] font-serif pt-4 sm:pt-8 pb-16">
       <div className="max-w-7xl mx-auto px-4 w-full">
 
-        {/* Lead Headline Banner */}
         <div className="border-b-2 border-[#1a1a1a] pb-8 mb-10">
           <div className="max-w-4xl">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-serif text-[#1a1a1a] tracking-tight leading-[1.08] mb-4">
@@ -68,7 +66,6 @@ export default function ExperiencePage() {
           </div>
         </div>
 
-        {/* Timeline */}
         <ol className="relative border-l-2 border-[#1a1a1a] ml-2 sm:ml-3 space-y-10 max-w-4xl">
           {roles.map((role) => (
             <li key={`${role.organization}-${role.period}`} className="pl-6 sm:pl-8 relative">
@@ -119,7 +116,6 @@ export default function ExperiencePage() {
           ))}
         </ol>
 
-        {/* Bottom Call to Action */}
         <div className="mt-16 pt-8 border-t-2 border-[#1a1a1a] flex flex-wrap items-center justify-between gap-6">
           <div>
             <h3 className="text-xl font-bold font-serif text-[#1a1a1a]">

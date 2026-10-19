@@ -12,12 +12,10 @@ interface VisitorPayload {
 }
 
 async function processVisitor(request: NextRequest, clientInfo?: VisitorPayload) {
-  // Get client IP and user-agent from request headers
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "127.0.0.1";
   const userAgent = request.headers.get("user-agent") ?? "unknown";
   const referer = request.headers.get("referer") ?? "direct";
 
-  // Use client-code provided device time, timezone, city, and country
   const timeZone = clientInfo?.timeZone || "UTC";
   const localTime = clientInfo?.localTime
     ? `${clientInfo.localTime} (${timeZone})`
@@ -31,15 +29,12 @@ async function processVisitor(request: NextRequest, clientInfo?: VisitorPayload)
     ? clientInfo.country
     : (request.headers.get("x-vercel-ip-country") || request.headers.get("cf-ipcountry") || "Unknown");
 
-  // Create a unique fingerprint from IP + device/browser
   const fingerprint = crypto.createHash("sha256")
     .update(`${ip}:${userAgent}`)
     .digest("hex");
 
-  // sadd returns 1 if the fingerprint is new, 0 if it already exists
   const isNew = (await redis.sadd("portfolio:visitors", fingerprint)) === 1;
 
-  // Save full visitor details against this SHA fingerprint if new
   if (isNew) {
     const visitorDetails = {
       ip,
@@ -53,7 +48,6 @@ async function processVisitor(request: NextRequest, clientInfo?: VisitorPayload)
     await redis.hset("portfolio:visitor_details", fingerprint, JSON.stringify(visitorDetails));
   }
 
-  // New visitor: increment the counter. Returning visitor: just read it
   const count = isNew
     ? await redis.incr("portfolio:count")
     : Number(await redis.get("portfolio:count")) || 1;

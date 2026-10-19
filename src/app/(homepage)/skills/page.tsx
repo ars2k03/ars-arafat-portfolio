@@ -94,7 +94,6 @@ export default function SkillsPage() {
     <section className="w-full flex-1 bg-[#fbf8f1] text-[#1a1a1a] font-serif pt-4 sm:pt-8 pb-16">
       <div className="max-w-7xl mx-auto px-4 w-full">
 
-        {/* Lead Headline Banner */}
         <div className="border-b-2 border-[#1a1a1a] pb-8 mb-10">
           <div className="max-w-4xl">
 
@@ -108,12 +107,10 @@ export default function SkillsPage() {
           </div>
         </div>
 
-        {/* Categories Stack Grid */}
         <div className="space-y-12">
           {categories.map((cat) => (
             <div key={cat.title} className="space-y-4">
               
-              {/* Category Header Rule */}
               <div className="border-b border-[#1a1a1a]/40 pb-2 flex flex-wrap items-baseline justify-between gap-2">
                 <div className="flex items-center gap-2.5">
                   <span className="text-xl sm:text-2xl">{cat.icon}</span>
@@ -123,7 +120,6 @@ export default function SkillsPage() {
                 </div>
               </div>
 
-              {/* Grid of Skill Cards */}
               <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 pt-1">
                 {cat.items.map((tech) => (
                   <div
@@ -148,7 +144,6 @@ export default function SkillsPage() {
           ))}
         </div>
 
-        {/* Bottom Call to Action Footer Rule */}
         <div className="mt-16 pt-8 border-t-2 border-[#1a1a1a] flex flex-wrap items-center justify-between gap-6">
           <div>
             <h3 className="text-xl font-bold font-serif text-[#1a1a1a]">

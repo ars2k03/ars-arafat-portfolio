@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     const res = await fetch(
       `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(queryCity)}&aqi=no`,
       {
-        next: { revalidate: 300 }, // Cache weather for 5 minutes
+        next: { revalidate: 300 },
       }
     );
 
@@ -40,7 +40,6 @@ export async function GET(request: Request) {
 
     console.error("Weather API error:", error);
 
-    // Reliable fallback
     const fallbackCity = (cityParam && cityParam !== "Unknown" ? cityParam : "DHAKA").toUpperCase();
     return NextResponse.json({
       success: false,

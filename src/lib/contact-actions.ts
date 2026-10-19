@@ -7,13 +7,10 @@ import { redis } from "@/lib/redis";
 export interface ContactState {
   status: "idle" | "success" | "error";
   message: string;
-  // Bumped on every submit so the client can show a fresh toast each time.
   id: number;
-  // Echoed back on error so the visitor does not lose what they typed.
   fields?: Record<"name" | "email" | "subject" | "message", string>;
 }
 
-// Visitor-facing copy. Never include internal details here.
 const MESSAGES = {
   success: "Thank you for reaching out. Your message has been delivered and I will get back to you shortly.",
   missingFields: "Please complete all required fields before sending.",
@@ -23,7 +20,6 @@ const MESSAGES = {
   unavailable: "Your message could not be sent at the moment. Please try again later or reach me by email.",
 } as const;
 
-// Server-only logs: short, tagged and free of secrets or visitor data.
 const log = (event: string, detail?: string) =>
   console.error(`[contact] ${event}${detail ? `: ${detail}` : ""}`);
 
@@ -35,7 +31,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const escapeHtml = (value: string) =>
   value.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
-// Returns false when this IP has sent too many messages. Fails open if Redis is unreachable.
+// fails open if redis is down
 async function withinRateLimit(ip: string) {
   try {
     if (redis.status === "wait") await redis.connect();
@@ -53,7 +49,7 @@ export async function sendContactMessage(_prev: ContactState, formData: FormData
   const id = Date.now();
   const field = (name: string) => String(formData.get(name) ?? "").trim();
 
-  // Honeypot: real visitors never see or fill this field. Pretend success so bots move on.
+  // honeypot filled, fake a success for the bot
   if (field("company")) {
     return { status: "success", message: MESSAGES.success, id };
   }
@@ -81,14 +77,12 @@ export async function sendContactMessage(_prev: ContactState, formData: FormData
   }
 
   const to = process.env.CONTACT_TO_EMAIL;
-  // Accepts either "contact@domain" or "Name <contact@domain>"; only the address is used.
   const fromAddress = process.env.CONTACT_FROM_EMAIL?.match(/<([^>]+)>/)?.[1] ?? process.env.CONTACT_FROM_EMAIL?.trim();
   if (!process.env.RESEND_API_KEY || !to || !fromAddress) {
     log("email service not configured");
     return { status: "error", message: MESSAGES.unavailable, id, fields };
   }
 
-  // Show who wrote in, e.g. "Rahim Ahmed via ars2k03.online", so the inbox is scannable.
   const senderName = name.replace(/["<>\\\r\n]/g, "").slice(0, 60);
   const from = `"${senderName} via ${fromAddress.split("@")[1]}" <${fromAddress}>`;
 

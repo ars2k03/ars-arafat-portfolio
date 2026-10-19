@@ -4,14 +4,11 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 interface MarqueeProps {
   children: ReactNode;
-  // Scroll speed in pixels per second.
   speed?: number;
   className?: string;
 }
 
-// Scrolls its content right to left in whole-pixel steps. A CSS transform
-// animation lands on fractional pixels, which blurs small text while moving;
-// rounding every frame keeps the text as sharp as when it is paused.
+// whole-pixel steps keep the text sharp while it moves
 export default function Marquee({ children, speed = 60, className = "" }: MarqueeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);

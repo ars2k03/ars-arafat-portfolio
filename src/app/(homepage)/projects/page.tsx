@@ -128,7 +128,6 @@ export default function ProjectsPage() {
     <section className="w-full flex-1 bg-[#fbf8f1] text-[#1a1a1a] font-serif pt-4 sm:pt-8 pb-16">
       <div className="max-w-7xl mx-auto px-4 w-full">
 
-        {/* Lead Headline Banner */}
         <div className="border-b-2 border-[#1a1a1a] pb-8 mb-10">
           <div className="max-w-4xl">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-serif text-[#1a1a1a] tracking-tight leading-[1.08] mb-4">
@@ -141,7 +140,6 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        {/* Project List */}
         <div className="space-y-8">
           {projects.map((project, index) => (
             <article
@@ -203,7 +201,6 @@ export default function ProjectsPage() {
           ))}
         </div>
 
-        {/* Bottom Call to Action */}
         <div className="mt-16 pt-8 border-t-2 border-[#1a1a1a] flex flex-wrap items-center justify-between gap-6">
           <div>
             <h3 className="text-xl font-bold font-serif text-[#1a1a1a]">

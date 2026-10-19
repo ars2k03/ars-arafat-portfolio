@@ -24,7 +24,6 @@ export default function ContactForm({ email }: ContactFormProps) {
   const [dismissedId, setDismissedId] = useState(0);
   const showToast = state.status !== "idle" && state.id !== dismissedId;
 
-  // Auto-hide the toast a few seconds after each submit.
   useEffect(() => {
     if (state.status === "idle") return;
     const timer = setTimeout(() => setDismissedId(state.id), 5000);
@@ -37,7 +36,7 @@ export default function ContactForm({ email }: ContactFormProps) {
 
   return (
     <>
-    {/* React resets the form after each submit; remounting with defaultValues restores input on error */}
+    {/* remount to restore input after an error */}
     <form
       key={state.id}
       action={formAction}
@@ -58,7 +57,6 @@ export default function ContactForm({ email }: ContactFormProps) {
         </div>
       </div>
 
-      {/* Honeypot: hidden from people, filled by bots */}
       <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
         <label htmlFor="company">Company</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />

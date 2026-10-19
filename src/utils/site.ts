@@ -1,4 +1,3 @@
-// Single source for contact details and social profiles used across the site.
 export const site = {
   name: "Arafat Rahman",
   role: "Full-Stack Software Engineer",

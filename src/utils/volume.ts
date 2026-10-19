@@ -4,7 +4,6 @@ const ROMAN_MAP: [number, string][] = [
   [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"],
 ];
 
-// 1 -> I, 4 -> IV, 10 -> X
 export function toRoman(num: number): string {
   let result = "";
   for (const [value, symbol] of ROMAN_MAP) {
@@ -16,7 +15,7 @@ export function toRoman(num: number): string {
   return result || "I";
 }
 
-// 10 visitor = 1 volume
+// 10 visitors = 1 volume
 export function calculateVolume(count: number) {
   const volumeNumber = Math.floor((Math.max(1, count) - 1) / 10) + 1;
   return { volumeNumber, volumeRoman: toRoman(volumeNumber) };

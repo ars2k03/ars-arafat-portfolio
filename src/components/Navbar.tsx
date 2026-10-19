@@ -35,8 +35,6 @@ export default function Navbar() {
   const menuToggleRef = useRef<HTMLButtonElement>(null);
   const menuCloseRef = useRef<HTMLButtonElement>(null);
 
-  // While the mobile drawer is open: lock page scroll, move focus into it,
-  // close on Escape or when the viewport grows past the mobile breakpoint.
   useEffect(() => {
     if (!mobileMenuOpen) return;
 
@@ -155,10 +153,8 @@ export default function Navbar() {
 
   return (
     <header className="w-full bg-[#fbf8f1] text-[#1a1a1a] border-b-2 border-[#1a1a1a] font-serif">
-      {/* Top Folio / Ears Bar */}
       <div className="border-b border-[#1a1a1a]/30 text-xs uppercase tracking-wider text-[#2e2a22]">
         <div className="max-w-7xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-between gap-2">
-          {/* Left Ear */}
           <div className="flex items-center gap-2 sm:gap-3">
             <span className="font-bold text-[#1a1a1a] tracking-wider">
               VOL. {visitorStats ? visitorStats.volumeRoman : "—"} · NO.{" "}
@@ -168,12 +164,10 @@ export default function Navbar() {
             <span className="hidden sm:inline text-[#2e2a22] font-semibold">EST. 2026</span>
           </div>
 
-          {/* Center Date */}
           <div className="hidden sm:block font-bold tracking-widest text-[#1a1a1a] text-center">
             {currentDate}
           </div>
 
-          {/* Right Ear */}
           <div className="flex items-center gap-3">
             <span className="hidden md:inline font-medium">
               {weather
@@ -188,10 +182,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Masthead Banner */}
       <div className="max-w-7xl mx-auto px-4 py-4 md:py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-4">
-          {/* Left Ear Quote / Box (Desktop) */}
           <div className="hidden lg:flex lg:col-span-3 flex-col justify-center border-r border-[#1a1a1a]/20 pr-4 text-left">
             <p className="text-xs font-sans uppercase font-bold tracking-widest text-[#7a2020] mb-1">
               ★ Daily Quotation
@@ -204,7 +196,6 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Central Newspaper Title */}
           <div className="lg:col-span-6 text-center">
             <div className="flex items-center justify-center gap-2 text-xs tracking-[0.1em] sm:tracking-[0.2em] uppercase font-sans text-[#4a4336] mb-1">
               <span>✦</span>
@@ -218,7 +209,6 @@ export default function Navbar() {
               </h1>
             </Link>
 
-            {/* Subtitle Ribbon */}
             <div className="mt-1 flex items-center justify-center gap-3 text-sm sm:text-base italic text-[#2e2a22]">
               <span className="h-[1px] w-8 sm:w-16 bg-[#1a1a1a]/40 inline-block"></span>
               <span>&ldquo;All the Code That&apos;s Fit to Ship&rdquo;</span>
@@ -230,7 +220,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Right Ear Status / Live Clock (Desktop) */}
           <div className="hidden lg:flex lg:col-span-3 flex-col justify-center border-l border-[#1a1a1a]/20 pl-4 text-right">
             <div className="inline-flex items-center justify-end gap-2 text-xs font-black font-sans uppercase tracking-widest text-red-600 mb-1.5">
               <span className="relative flex h-2.5 w-2.5">
@@ -246,11 +235,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Classic Broadsheet Double Rule Separator */}
       <div className="border-t-2 border-b border-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between py-1.5 md:py-2">
-            {/* Desktop Navigation Links */}
             <nav className="hidden md:flex items-center justify-between w-full divide-x divide-[#1a1a1a]/25 text-xs lg:text-sm font-extrabold tracking-[0.1em] lg:tracking-[0.14em] font-sans uppercase">
               {NAV_ITEMS.map((item) => (
                 <Link
@@ -273,7 +260,6 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Mobile / Tablet Header Controls */}
             <div className="flex md:hidden items-center justify-between w-full py-1">
               <span className="text-xs font-bold uppercase tracking-widest font-sans text-[#1a1a1a]">
                 Section Index
@@ -294,7 +280,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       <div
         className={`md:hidden fixed inset-0 z-50 ${mobileMenuOpen ? "" : "pointer-events-none"}`}
         aria-hidden={!mobileMenuOpen}
@@ -377,7 +362,6 @@ export default function Navbar() {
         </aside>
       </div>
 
-      {/* Breaking Ticker / Sub-bar */}
       <div className="bg-[#ede7d8] border-b border-[#1a1a1a]/40 text-xs font-sans">
         <div className="max-w-4xl mx-auto px-4 py-1.5 flex items-center justify-center gap-3 overflow-hidden">
           <div className="shrink-0 flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#7a2020] bg-[#ede7d8] pr-2 z-10 border-r border-[#1a1a1a]/20">

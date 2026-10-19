@@ -1,5 +1,3 @@
-// Site sections in reading order. The navbar renders these, and scrolling
-// past the end of one page flips to the next in this order.
 export interface NavItem {
   label: string;
   href: string;

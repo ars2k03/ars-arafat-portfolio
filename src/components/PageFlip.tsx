@@ -4,13 +4,9 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { NAV_ITEMS } from "@/utils/nav";
 
-// A wheel event this long after the previous one starts a new gesture. Momentum
-// from the scroll that reached the edge arrives in a steady stream, so only a
-// fresh scroll made while already at the edge flips the page.
+// momentum events come back to back, so only a fresh scroll at the edge flips
 const NEW_GESTURE_GAP_MS = 180;
-// Swipe distance past the edge that flips the page on touch screens.
 const TOUCH_THRESHOLD = 70;
-// After arriving on a page, ignore input briefly so one flick can't skip pages.
 const ARRIVAL_COOLDOWN_MS = 700;
 const EXIT_MS = 220;
 const ENTER_MS = 380;
@@ -18,13 +14,10 @@ const SHIFT = 48;
 
 type Direction = "next" | "prev";
 
-// Survives the client-side navigation so the new page knows how to animate in.
 let pendingEntrance: Direction | null = null;
 let pendingScrollTop = false;
 let exitAnimation: Animation | null = null;
 
-// Scrolling once more at the bottom of a page slides to the next section, and
-// at the top slides back to the previous one.
 export default function PageFlip() {
   const pathname = usePathname();
   const router = useRouter();
@@ -33,13 +26,11 @@ export default function PageFlip() {
   const next = index >= 0 ? NAV_ITEMS[index + 1] : undefined;
   const prev = index > 0 ? NAV_ITEMS[index - 1] : undefined;
 
-  // Entrance animation for a page reached by flipping.
   useEffect(() => {
     const main = document.querySelector("main");
     exitAnimation?.cancel();
     exitAnimation = null;
     if (pendingScrollTop) {
-      // Start the new page from its masthead, not just from where its content begins.
       pendingScrollTop = false;
       window.scrollTo({ top: 0, behavior: "instant" });
     }
@@ -61,7 +52,6 @@ export default function PageFlip() {
 
     const root = document.documentElement;
     const previousOverscroll = root.style.overscrollBehaviorY;
-    // Stop pull-to-refresh and bounce so a swipe at the edges only flips pages.
     root.style.overscrollBehaviorY = "none";
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -100,7 +90,7 @@ export default function PageFlip() {
         ],
         { duration: EXIT_MS, easing: "ease-in", fill: "forwards" },
       );
-      // A timer instead of onfinish: animations stall in background tabs.
+      // onfinish never fires in background tabs
       window.setTimeout(() => router.push(target.href, { scroll: false }), EXIT_MS);
     };
 
