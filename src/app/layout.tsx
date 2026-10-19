@@ -3,10 +3,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Arafat Rahman | Full-Stack Software Engineer",
-    template: "%s | Arafat Rahman",
+    default: "A R S | Full-Stack Software Engineer",
+    template: "%s | A R S",
   },
-  description: "Portfolio of Arafat Rahman, a full-stack software engineer building web and mobile applications.",
+  description: "Portfolio of A R S, a full-stack software engineer building web and mobile applications.",
 };
 
 export default function RootLayout({

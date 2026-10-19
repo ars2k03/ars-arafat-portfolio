@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Skills & Tech Stack",
-  description: "The languages, frameworks and tools Arafat Rahman uses to build full-stack web and mobile applications.",
+  description: "The languages, frameworks and tools A R S uses to build full-stack web and mobile applications.",
 };
 
 interface TechItem {

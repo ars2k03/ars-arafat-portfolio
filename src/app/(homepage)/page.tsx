@@ -172,6 +172,7 @@ export default function Home() {
                     src="/profile.jpg"
                     alt={`${site.name} - ${site.role}`}
                     fill
+                    loading="eager"
                     sizes="(max-width: 768px) 100vw, 420px"
                     className="object-cover object-top"
                   />

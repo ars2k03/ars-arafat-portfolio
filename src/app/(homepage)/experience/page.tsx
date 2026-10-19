@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: "Professional experience of Arafat Rahman, full-stack software engineer.",
+  description: "Professional experience of A R S, full-stack software engineer.",
 };
 
 interface RoleLink {

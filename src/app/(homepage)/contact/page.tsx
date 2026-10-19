@@ -4,7 +4,7 @@ import { site } from "@/utils/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Arafat Rahman for full-time software engineering roles, freelance projects, or collaboration.",
+  description: "Get in touch with A R S for full-time software engineering roles, freelance projects, or collaboration.",
 };
 
 const email = site.email;

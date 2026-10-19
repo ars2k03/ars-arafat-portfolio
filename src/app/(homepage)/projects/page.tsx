@@ -6,7 +6,7 @@ import { site } from "@/utils/site";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Selected projects by Arafat Rahman: production web platforms and open-source npm packages.",
+  description: "Selected projects by A R S: production web platforms and open-source npm packages.",
 };
 
 interface ProjectLink {
@@ -189,6 +189,7 @@ export default function ProjectsPage() {
                       alt={`${project.title} homepage`}
                       width={1440}
                       height={900}
+                      loading={index === 0 ? "eager" : "lazy"}
                       sizes="(min-width: 1024px) 480px, 100vw"
                       className="w-full h-auto"
                     />
