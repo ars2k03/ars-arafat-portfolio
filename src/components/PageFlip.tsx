@@ -11,11 +11,18 @@ const ARRIVAL_COOLDOWN_MS = 700;
 const EXIT_MS = 220;
 const ENTER_MS = 380;
 const SHIFT = 48;
+// browsers keep a wheel gesture locked to its original scroll target until the
+// wheel rests (firefox: 1500ms) or the mouse moves, so after a flip native
+// scrolling stalls on the new page; scroll it ourselves until the lock lifts
+const WHEEL_LOCK_MS = 1500;
+const LINE_HEIGHT_PX = 40;
 
 type Direction = "next" | "prev";
 
 let pendingEntrance: Direction | null = null;
 let pendingScrollTop = false;
+let pendingWheelTakeover = false;
+let lastWheelEventAt = 0;
 let exitAnimation: Animation | null = null;
 
 export default function PageFlip() {
@@ -61,6 +68,10 @@ export default function PageFlip() {
     let touchStartY: number | null = null;
     let touchCanNext = false;
     let touchCanPrev = false;
+    let takeover = pendingWheelTakeover && performance.now() - lastWheelEventAt < WHEEL_LOCK_MS;
+    let takeoverLastWheelAt = lastWheelEventAt;
+    let scrollTarget: number | null = null;
+    pendingWheelTakeover = false;
 
     const atBottom = () => window.innerHeight + window.scrollY >= root.scrollHeight - 2;
     const atTop = () => window.scrollY <= 0;
@@ -98,10 +109,43 @@ export default function PageFlip() {
       const now = performance.now();
       const newGesture = now - lastWheelAt > NEW_GESTURE_GAP_MS;
       lastWheelAt = now;
+      lastWheelEventAt = now;
       if (!newGesture || isBlocked(e.target)) return;
 
-      if (e.deltaY > 0 && next && atBottom()) flip("next");
-      else if (e.deltaY < 0 && prev && atTop()) flip("prev");
+      const dir = e.deltaY > 0 && next && atBottom() ? "next" : e.deltaY < 0 && prev && atTop() ? "prev" : null;
+      if (!dir) return;
+      pendingWheelTakeover = true;
+      flip(dir);
+    };
+
+    const endTakeover = () => {
+      if (!takeover) return;
+      takeover = false;
+      window.removeEventListener("wheel", onTakeoverWheel);
+      window.removeEventListener("mousemove", onTakeoverMouseMove);
+    };
+
+    const onTakeoverWheel = (e: WheelEvent) => {
+      const now = performance.now();
+      if (now - takeoverLastWheelAt > WHEEL_LOCK_MS) {
+        endTakeover();
+        return;
+      }
+      takeoverLastWheelAt = now;
+      if (navigating || e.ctrlKey) return;
+
+      // read deltaY before deltaMode so firefox reports pixels
+      const dy = e.deltaY;
+      const px = e.deltaMode === 1 ? dy * LINE_HEIGHT_PX : e.deltaMode === 2 ? dy * window.innerHeight : dy;
+      e.preventDefault();
+      const max = root.scrollHeight - window.innerHeight;
+      scrollTarget = Math.min(Math.max((scrollTarget ?? window.scrollY) + px, 0), max);
+      window.scrollTo({ top: scrollTarget, behavior: "smooth" });
+    };
+
+    // layout changes fire synthetic mousemoves with no movement; only a real move lifts the lock
+    const onTakeoverMouseMove = (e: MouseEvent) => {
+      if (e.movementX !== 0 || e.movementY !== 0) endTakeover();
     };
 
     const onTouchStart = (e: TouchEvent) => {
@@ -122,11 +166,16 @@ export default function PageFlip() {
     };
 
     window.addEventListener("wheel", onWheel, { passive: true });
+    if (takeover) {
+      window.addEventListener("wheel", onTakeoverWheel, { passive: false });
+      window.addEventListener("mousemove", onTakeoverMouseMove);
+    }
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: true });
 
     return () => {
       root.style.overscrollBehaviorY = previousOverscroll;
+      endTakeover();
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
