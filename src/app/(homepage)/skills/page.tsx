@@ -124,20 +124,20 @@ export default function SkillsPage() {
               </div>
 
               {/* Grid of Skill Cards */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 pt-1">
+              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 pt-1">
                 {cat.items.map((tech) => (
                   <div
                     key={tech.name}
-                    className="px-4 py-6 bg-[#f4efe2] border border-[#1a1a1a] shadow-[3px_3px_0px_#1a1a1a] hover:shadow-[5px_5px_0px_#7a2020] hover:-translate-y-0.5 transition-all duration-150 flex flex-col items-center justify-center gap-3 text-center group"
+                    className="px-2 py-4 sm:px-4 sm:py-6 bg-[#f4efe2] border border-[#1a1a1a] shadow-[3px_3px_0px_#1a1a1a] hover:shadow-[5px_5px_0px_#7a2020] hover:-translate-y-0.5 transition-all duration-150 flex flex-col items-center justify-center gap-2 sm:gap-3 text-center group"
                   >
                     <Image
                       src={tech.logo}
                       alt={`${tech.name} logo`}
                       width={72}
                       height={72}
-                      className="w-16 h-16 sm:w-[72px] sm:h-[72px] shrink-0 object-contain group-hover:scale-105 transition-transform"
+                      className="w-11 h-11 sm:w-16 sm:h-16 md:w-[72px] md:h-[72px] shrink-0 object-contain group-hover:scale-105 transition-transform"
                     />
-                    <h3 className="text-lg sm:text-xl font-black font-serif text-[#1a1a1a] tracking-tight group-hover:text-[#7a2020] transition-colors">
+                    <h3 className="text-sm sm:text-lg md:text-xl leading-tight font-black font-serif text-[#1a1a1a] tracking-tight group-hover:text-[#7a2020] transition-colors">
                       {tech.name}
                     </h3>
                   </div>

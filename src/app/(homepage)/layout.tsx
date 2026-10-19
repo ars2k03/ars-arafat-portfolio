@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import PageFlip from "@/components/PageFlip";
 
 export default function HomepageLayout({
   children,
@@ -9,6 +10,7 @@ export default function HomepageLayout({
     <>
       <Navbar />
       <main className="flex-1 flex flex-col">{children}</main>
+      <PageFlip />
     </>
   );
 }

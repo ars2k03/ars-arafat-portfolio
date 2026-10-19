@@ -3,7 +3,7 @@ import Redis from "ioredis";
 const redisUrl = process.env.REDIS_URL;
 
 if (!redisUrl) {
-  console.warn("⚠️ REDIS_URL environment variable is not defined in .env");
+  console.warn("[redis] REDIS_URL configuration is missing. Defaulting to local instance.");
 }
 
 // Global singleton pattern to prevent multiple open connections during Fast Refresh in development

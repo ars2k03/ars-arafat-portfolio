@@ -9,7 +9,7 @@ export async function GET(request: Request) {
     const apiKey = process.env.WEATHER_API_KEY;
 
     if (!apiKey) {
-      throw new Error("WEATHER_API_KEY is not defined in .env");
+      throw new Error("Weather API credential is not configured");
     }
 
     const queryCity = cityParam && cityParam !== "Unknown" ? cityParam : "Dhaka";
@@ -21,7 +21,7 @@ export async function GET(request: Request) {
     );
 
     if (!res.ok) {
-      throw new Error(`WeatherAPI returned status ${res.status}`);
+      throw new Error(`Failed to fetch weather data: upstream provider responded with status ${res.status}`);
     }
 
     const data = await res.json();
