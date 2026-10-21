@@ -3,8 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Skills & Tech Stack",
-  description: "The languages, frameworks and tools A R S uses to build full-stack web and mobile applications.",
+  title: "Skills & Tech Stack — TypeScript, Next.js, NestJS",
+  description:
+    "Skills and tech stack of Md Arafat Rahman Sohan (ARS / ars2k03), full-stack software engineer: TypeScript, Next.js, React, NestJS, Node.js, PostgreSQL, Redis, Docker, Flutter and LLM / AI agent integration.",
+  alternates: { canonical: "/skills" },
+  openGraph: {
+    title: "Skills of Md Arafat Rahman Sohan (ARS)",
+    description:
+      "TypeScript, Next.js, NestJS, PostgreSQL and more — the tech stack of Arafat Rahman Sohan (ars2k03).",
+    url: "/skills",
+    type: "website",
+    images: ["/profile.jpg"],
+  },
 };
 
 interface TechItem {

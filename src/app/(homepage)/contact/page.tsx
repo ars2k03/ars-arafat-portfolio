@@ -4,7 +4,17 @@ import { site } from "@/utils/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with A R S for full-time software engineering roles, freelance projects, or collaboration.",
+  description:
+    "Contact Md Arafat Rahman Sohan (ARS / ars2k03), full-stack software engineer from Rajshahi, Bangladesh, for software engineering roles, freelance projects or collaboration. Email: arafatsohan2003@gmail.com — GitHub: ars2k03, LinkedIn: ars2k05.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Md Arafat Rahman Sohan (ARS)",
+    description:
+      "Get in touch with Arafat Rahman Sohan (ars2k03) for roles, freelance work or collaboration.",
+    url: "/contact",
+    type: "website",
+    images: ["/profile.jpg"],
+  },
 };
 
 const email = site.email;

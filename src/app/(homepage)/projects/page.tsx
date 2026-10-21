@@ -6,7 +6,17 @@ import { site } from "@/utils/site";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Selected projects by A R S: production web platforms and open-source npm packages.",
+  description:
+    "Projects by Md Arafat Rahman Sohan (ARS / ars2k03), full-stack software engineer from Bangladesh: Chakri.ai, JoldiMart, WA Gateway and other production web platforms built with TypeScript, Next.js, NestJS and PostgreSQL.",
+  alternates: { canonical: "/projects" },
+  openGraph: {
+    title: "Projects by Md Arafat Rahman Sohan (ARS)",
+    description:
+      "Production projects by Arafat Rahman Sohan (ars2k03): Chakri.ai, JoldiMart, WA Gateway and more.",
+    url: "/projects",
+    type: "website",
+    images: ["/profile.jpg"],
+  },
 };
 
 interface ProjectLink {

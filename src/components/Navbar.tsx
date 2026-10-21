@@ -203,10 +203,10 @@ export default function Navbar() {
               <span>✦</span>
             </div>
 
-            <Link href="/" className="inline-block group cursor-pointer">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a] font-serif transition-colors group-hover:text-[#7a2020]">
+            <Link href="/" className="inline-block group cursor-pointer" aria-label="Md Arafat Rahman Sohan (ARS) — home">
+              <p className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a] font-serif transition-colors group-hover:text-[#7a2020]">
                 A R S
-              </h1>
+              </p>
             </Link>
 
             <div className="mt-1 flex items-center justify-center gap-3 text-sm sm:text-base italic text-[#2e2a22]">

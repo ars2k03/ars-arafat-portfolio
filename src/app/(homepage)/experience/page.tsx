@@ -3,7 +3,17 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: "Professional experience of A R S, full-stack software engineer.",
+  description:
+    "Work experience of Md Arafat Rahman Sohan (ARS / ars2k03): Founding Full-Stack Engineer at Chakri.ai and JoldiMart, Full-Stack Software Engineer (part-time) at LuminexLabs, and BSc CSE student at RUET, Rajshahi, Bangladesh.",
+  alternates: { canonical: "/experience" },
+  openGraph: {
+    title: "Experience of Md Arafat Rahman Sohan (ARS)",
+    description:
+      "Founding engineer at Chakri.ai and JoldiMart, part-time at LuminexLabs — the experience of Arafat Rahman Sohan (ars2k03).",
+    url: "/experience",
+    type: "website",
+    images: ["/profile.jpg"],
+  },
 };
 
 interface RoleLink {
