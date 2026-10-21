@@ -5,6 +5,50 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/utils/site";
 
+
+const faqs = [
+  {
+    question: "Who is Md Arafat Rahman Sohan?",
+    answer:
+      "Md Arafat Rahman Sohan is a full-stack software engineer from Rajshahi, Bangladesh. He is a founding engineer at Chakri.ai and JoldiMart, works part-time at LuminexLabs, and studies BSc in Computer Science & Engineering at RUET. His official portfolio is ars2k03.online.",
+  },
+  {
+    question: "Who is ARS / ars2k03?",
+    answer:
+      "ARS and ars2k03 are the online names of Md Arafat Rahman Sohan. ARS is formed from his name — Arafat Rahman Sohan — and ars2k03 is his username on GitHub and his website domain, ars2k03.online.",
+  },
+  {
+    question: "What does Arafat Rahman Sohan do?",
+    answer:
+      "Arafat Rahman Sohan builds production web and mobile applications as a full-stack software engineer. He is a founding engineer at Chakri.ai, an AI-powered hiring platform, and at JoldiMart, a quick-commerce grocery startup in Dhaka, and he works part-time at the software studio LuminexLabs.",
+  },
+  {
+    question: "Where is Arafat Rahman Sohan based?",
+    answer:
+      "Md Arafat Rahman Sohan is based in Rajshahi, Bangladesh, and works remotely with teams and clients worldwide.",
+  },
+  {
+    question: "What technologies does ars2k03 use?",
+    answer:
+      "ars2k03 (Md Arafat Rahman Sohan) mainly works with TypeScript, Next.js, React, NestJS, Node.js, PostgreSQL, Redis and Docker, and also builds with Flutter, MongoDB, Prisma and Supabase, including LLM integration and AI agents.",
+  },
+  {
+    question: "How can I contact Md Arafat Rahman Sohan?",
+    answer:
+      "You can contact Md Arafat Rahman Sohan by email at arafatsohan2003@gmail.com, through the contact page at ars2k03.online/contact, on GitHub as ars2k03, or on LinkedIn as ars2k05.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
 export default function Home() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -288,6 +332,25 @@ export default function Home() {
               <a href="https://www.linkedin.com/in/ars2k05" target="_blank" rel="noreferrer" className="underline decoration-[#7a2020] underline-offset-4 hover:text-[#7a2020]">LinkedIn (ars2k05)</a>{" "}
               and <a href="https://x.com/ars_2k03" target="_blank" rel="noreferrer" className="underline decoration-[#7a2020] underline-offset-4 hover:text-[#7a2020]">X (ars_2k03)</a>.
             </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="faq-arafat" className="mt-16 border-t-2 border-[#1a1a1a] pt-10">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          />
+          <p className="text-xs font-sans font-bold uppercase tracking-widest text-[#7a2020] mb-2">★ Questions &amp; Answers</p>
+          <h2 id="faq-arafat" className="text-3xl sm:text-4xl font-black font-serif text-[#1a1a1a] tracking-tight mb-6">
+            Frequently Asked Questions
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+            {faqs.map((f) => (
+              <div key={f.question}>
+                <h3 className="text-lg sm:text-xl font-bold font-serif text-[#1a1a1a] mb-1.5">{f.question}</h3>
+                <p className="text-base text-[#2e2a22] font-serif leading-relaxed">{f.answer}</p>
+              </div>
+            ))}
           </div>
         </section>
       </div>
