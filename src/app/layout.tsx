@@ -5,7 +5,9 @@ import { site, siteKeywords } from "@/utils/site";
 const googleVerification =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
   "ZB468EsE6lB6ERkxBGd-Mw2zSSlLc38DSWLA5FUX414";
-const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
+const bingVerification =
+  process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ??
+  "C21794052CFA76F06EE8AD5037A6519F";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
