@@ -16,7 +16,7 @@ export const site = {
     "ars2k03",
   ],
   role: "Full-Stack Software Engineer",
-  url: "https://ars2k03.online",
+  url: "https://ars2k03.tech",
   location: "Rajshahi, Bangladesh",
   address: {
     locality: "Rajshahi",
@@ -43,7 +43,7 @@ export const siteKeywords = [
   "ARS",
   "ARS Arafat",
   "ars2k03",
-  "ars2k03.online",
+  "ars2k03.tech",
   "Arafat Rahman RUET",
   "Arafat Rahman Chakri.ai",
   "Arafat Rahman JoldiMart",

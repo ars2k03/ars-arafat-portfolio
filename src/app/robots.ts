@@ -3,7 +3,7 @@ import { site } from "@/utils/site";
 
 // AI search / answer-engine crawlers are explicitly welcomed so that
 // ChatGPT, Perplexity, Gemini, Claude, Copilot and other AI assistants
-// can read and cite ars2k03.online.
+// can read and cite ars2k03.tech.
 const aiCrawlers = [
   "GPTBot",
   "ChatGPT-User",

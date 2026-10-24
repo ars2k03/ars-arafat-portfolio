@@ -5,6 +5,9 @@ import { site, siteKeywords } from "@/utils/site";
 const googleVerification =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
   "ZB468EsE6lB6ERkxBGd-Mw2zSSlLc38DSWLA5FUX414";
+// Verification code for the new primary domain ars2k03.tech (the old
+// .online property stays verified for the Search Console change of address).
+const googleVerificationTech = "E1MK7lGu8CgPXu1iexo4BZQTTfR353CNLYwC0dYM_80";
 const bingVerification =
   process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ??
   "C21794052CFA76F06EE8AD5037A6519F";
@@ -21,7 +24,7 @@ export const metadata: Metadata = {
   authors: [{ name: site.fullName, url: site.url }],
   creator: site.fullName,
   publisher: site.fullName,
-  applicationName: "ars2k03.online — Md Arafat Rahman Sohan",
+  applicationName: "ars2k03.tech — Md Arafat Rahman Sohan",
   category: "technology",
   alternates: {
     canonical: "/",
@@ -29,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "profile",
     url: site.url,
-    siteName: "ars2k03.online — Md Arafat Rahman Sohan (ARS)",
+    siteName: "ars2k03.tech — Md Arafat Rahman Sohan (ARS)",
     title: "Md Arafat Rahman Sohan (ARS) | Full-Stack Software Engineer",
     description: site.description,
     locale: "en_US",
@@ -60,7 +63,13 @@ export const metadata: Metadata = {
   ...(googleVerification || bingVerification
     ? {
         verification: {
-          ...(googleVerification ? { google: googleVerification } : {}),
+          ...(googleVerification || googleVerificationTech
+            ? {
+                google: [googleVerification, googleVerificationTech].filter(
+                  Boolean,
+                ),
+              }
+            : {}),
           ...(bingVerification
             ? { other: { "msvalidate.01": bingVerification } }
             : {}),
@@ -128,7 +137,7 @@ const personJsonLd = {
       "@type": "WebSite",
       "@id": `${site.url}/#website`,
       url: site.url,
-      name: "ars2k03.online — Md Arafat Rahman Sohan (ARS)",
+      name: "ars2k03.tech — Md Arafat Rahman Sohan (ARS)",
       alternateName: ["ARS", "ars2k03", "Arafat Rahman", "Arafat Rahman Sohan"],
       publisher: { "@id": `${site.url}/#person` },
       author: { "@id": `${site.url}/#person` },

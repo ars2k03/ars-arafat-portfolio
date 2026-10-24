@@ -10,12 +10,12 @@ const faqs = [
   {
     question: "Who is Md Arafat Rahman Sohan?",
     answer:
-      "Md Arafat Rahman Sohan is a full-stack software engineer from Rajshahi, Bangladesh. He is a founding engineer at Chakri.ai and JoldiMart, works part-time at LuminexLabs, and studies BSc in Computer Science & Engineering at RUET. His official portfolio is ars2k03.online.",
+      "Md Arafat Rahman Sohan is a full-stack software engineer from Rajshahi, Bangladesh. He is a founding engineer at Chakri.ai and JoldiMart, works part-time at LuminexLabs, and studies BSc in Computer Science & Engineering at RUET. His official portfolio is ars2k03.tech.",
   },
   {
     question: "Who is ARS / ars2k03?",
     answer:
-      "ARS and ars2k03 are the online names of Md Arafat Rahman Sohan. ARS is formed from his name — Arafat Rahman Sohan — and ars2k03 is his username on GitHub and his website domain, ars2k03.online.",
+      "ARS and ars2k03 are the online names of Md Arafat Rahman Sohan. ARS is formed from his name — Arafat Rahman Sohan — and ars2k03 is his username on GitHub and his website domain, ars2k03.tech.",
   },
   {
     question: "What does Arafat Rahman Sohan do?",
@@ -35,7 +35,7 @@ const faqs = [
   {
     question: "How can I contact Md Arafat Rahman Sohan?",
     answer:
-      "You can contact Md Arafat Rahman Sohan by email at arafatsohan2003@gmail.com, through the contact page at ars2k03.online/contact, on GitHub as ars2k03, or on LinkedIn as ars2k05.",
+      "You can contact Md Arafat Rahman Sohan by email at arafatsohan2003@gmail.com, through the contact page at ars2k03.tech/contact, on GitHub as ars2k03, or on LinkedIn as ars2k05.",
   },
 ];
 
@@ -319,7 +319,7 @@ export default function Home() {
               <strong>Md Arafat Rahman Sohan</strong>, known online as <strong>ARS</strong> and{" "}
               <strong>ars2k03</strong>, is a full-stack software engineer based in Rajshahi,
               Bangladesh. People search for him as Arafat, Sohan, Rahman, ARS, ARS Arafat and
-              ars2k03 — every name points to the same engineer, and this site, ars2k03.online,
+              ars2k03 — every name points to the same engineer, and this site, ars2k03.tech,
               is his official portfolio.
             </p>
             <p>

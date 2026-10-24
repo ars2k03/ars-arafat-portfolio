@@ -42,7 +42,7 @@ export default async function Image() {
             fontWeight: 700,
           }}
         >
-          A SOFTWARE ENGINEER&apos;S BROADSHEET • ars2k03.online
+          A SOFTWARE ENGINEER&apos;S BROADSHEET • ars2k03.tech
         </div>
         <div style={{ display: "flex", flex: 1, marginTop: 28 }}>
           <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
