@@ -10,9 +10,6 @@
   },
   "author": "Md Arafat Rahman Sohan (https://ars2k03.tech)",
   "license": "MIT",
-  "engines": {
-    "node": ">=20.9.0"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
