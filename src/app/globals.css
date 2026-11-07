@@ -3,11 +3,6 @@
 :root {
   --background: #fbf8f1;
   --foreground: #1a1a1a;
-  --paper-cream: #fbf8f1;
-  --paper-tint: #f4efe2;
-  --ink-primary: #1a1a1a;
-  --ink-muted: #524d43;
-  --accent-burgundy: #7a2020;
 }
 
 @theme inline {
@@ -22,8 +17,4 @@ body {
   color: var(--foreground);
   font-family: "Georgia", "Times New Roman", "Cambria", "Times", serif;
   -webkit-font-smoothing: antialiased;
-}
-
-.newspaper-rule {
-  border-color: #1a1a1a;
 }

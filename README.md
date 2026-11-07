@@ -61,7 +61,7 @@
 
 ### Prerequisites
 
-- Node.js 20 or newer
+- Node.js 24 (see [`.nvmrc`](.nvmrc))
 - A [Resend](https://resend.com) API key, to send contact messages
 
 ### Setup
@@ -97,6 +97,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run build` | Build for production |
 | `npm run start` | Run the production build |
 | `npm run lint` | Run oxlint |
+| `npm run typecheck` | Run the TypeScript compiler |
 
 ## Editing the Resume
 
@@ -123,6 +124,10 @@ src/
 public/                  # Logo, profile photo, screenshots, skill logos, resume
 resume/                  # LaTeX resume source
 ```
+
+## Security
+
+See [SECURITY.md](SECURITY.md) to report a vulnerability.
 
 ## Author
 

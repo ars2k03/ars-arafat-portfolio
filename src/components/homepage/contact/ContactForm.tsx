@@ -84,10 +84,8 @@ export default function ContactForm() {
     </form>
 
     {showToast && (
-      <div
+      <output
         key={`toast-${state.id}`}
-        role="status"
-        aria-live="polite"
         className={`fixed bottom-6 right-4 left-4 sm:left-auto sm:max-w-sm z-50 flex items-start gap-3 px-4 py-3 border-2 border-[#1a1a1a] font-sans text-sm shadow-[4px_4px_0px_#1a1a1a] ${
           state.status === "success" ? "bg-[#e6efe1] text-[#1f4d22]" : "bg-[#f6e3e0] text-[#7a2020]"
         }`}
@@ -95,7 +93,7 @@ export default function ContactForm() {
         <span className="font-bold text-base leading-5" aria-hidden="true">
           {state.status === "success" ? "✓" : "!"}
         </span>
-        <p className="flex-1 leading-5">{state.message}</p>
+        <span className="flex-1 leading-5">{state.message}</span>
         <button
           type="button"
           onClick={() => setDismissedId(state.id)}
@@ -104,7 +102,7 @@ export default function ContactForm() {
         >
           ✕
         </button>
-      </div>
+      </output>
     )}
     </>
   );

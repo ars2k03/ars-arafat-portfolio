@@ -1,13 +1,24 @@
 {
-  "name": "ars",
+  "name": "ars-arafat-portfolio",
   "version": "1.0.0",
   "private": true,
+  "description": "Portfolio of Md Arafat Rahman Sohan, full-stack software engineer",
+  "homepage": "https://ars2k03.tech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ars2k03/ars-arafat-portfolio.git"
+  },
+  "author": "Md Arafat Rahman Sohan (https://ars2k03.tech)",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "16.4.5",

@@ -37,6 +37,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# latex build output
+/resume/*.aux
+/resume/*.log
+/resume/*.out
+/resume/*.pdf
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

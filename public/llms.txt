@@ -37,7 +37,7 @@ TypeScript, JavaScript, Next.js, React, NestJS, Node.js, Express.js, PostgreSQL,
 
 ## Pages on this site
 
-- Home / about: https://ars2k03.tech/
+- Home: https://ars2k03.tech/
 - Projects by Md Arafat Rahman Sohan: https://ars2k03.tech/#projects
 - Work experience: https://ars2k03.tech/#experience
 - Skills and tech stack: https://ars2k03.tech/#skills
