@@ -27,39 +27,31 @@ const channelIcons: Record<ContactChannel["label"], ReactNode> = {
 
 export default function ContactChannels() {
   return (
-    <div className="lg:col-span-5 space-y-4">
-      <h2 className="text-2xl sm:text-3xl font-black font-serif text-[#1a1a1a] tracking-tight border-b border-[#1a1a1a]/40 pb-2">
-        Reach Me Directly
-      </h2>
-
+    <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-3">
       {contactChannels.map((channel) => (
         <a
           key={channel.label}
           href={channel.href}
           target={channel.href.startsWith("http") ? "_blank" : undefined}
           rel={channel.href.startsWith("http") ? "noreferrer" : undefined}
-          className="p-4 bg-[#f4efe2] border border-[#1a1a1a] shadow-[3px_3px_0px_#1a1a1a] hover:shadow-[5px_5px_0px_#7a2020] hover:-translate-y-0.5 transition-all duration-150 flex items-center gap-4 group"
+          className="group flex flex-1 items-center gap-3.5 p-3.5 bg-[#f4efe2] border-[1.5px] border-[#1a1a1a] shadow-[4px_4px_0px_#1a1a1a]"
         >
-          <span className="w-12 h-12 shrink-0 flex items-center justify-center bg-[#fbf8f1] border border-[#1a1a1a] text-[#1a1a1a] group-hover:bg-[#1a1a1a] group-hover:text-[#fbf8f1] transition-colors">
+          <span className="w-11 h-11 shrink-0 flex items-center justify-center bg-[#fbf8f1] border-[1.5px] border-[#1a1a1a] text-[#1a1a1a] transition-colors group-hover:bg-[#1a1a1a] group-hover:text-[#fbf8f1]">
             {channelIcons[channel.label]}
           </span>
           <span className="min-w-0">
-            <span className="block text-xs font-mono font-bold uppercase tracking-widest text-[#7a2020]">
-              {channel.label}
-            </span>
-            <span className="block text-base sm:text-lg font-bold font-serif text-[#1a1a1a] truncate group-hover:text-[#7a2020] transition-colors">
-              {channel.value}
-            </span>
+            <span className="block text-[13px] font-semibold text-[#7a2020]">{channel.label}</span>
+            <span className="block text-base font-semibold text-[#1a1a1a] break-words">{channel.value}</span>
           </span>
         </a>
       ))}
 
-      <div className="p-4 border border-dashed border-[#1a1a1a]/50 flex items-center gap-3">
-        <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0" />
-        <p className="text-sm font-serif text-[#4a4336]">
-          <span className="font-bold text-[#1a1a1a]">Available for hire.</span> I usually reply within 24 hours.
-        </p>
-      </div>
+      <p className="flex items-center gap-2.5 p-3.5 border-[1.5px] border-dashed border-[#1a1a1a]/50 text-[15px] text-[#2e2a22]">
+        <span className="w-2.5 h-2.5 rounded-full bg-[#1f7a3d] shrink-0" aria-hidden="true" />
+        <span>
+          <span className="font-semibold text-[#1a1a1a]">Available for hire.</span> I usually reply within 24 hours.
+        </span>
+      </p>
     </div>
   );
 }

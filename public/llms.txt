@@ -17,7 +17,6 @@
 - Job title: Full-Stack Software Engineer
 - Founding Full-Stack Engineer at Chakri AI (AI-powered hiring platform for the Bangladesh job market) — since June 2026 — https://chakriai.com
 - Founding Full-Stack Engineer at JoldiMart (quick-commerce grocery delivery startup in Dhaka) — since September 2026 — https://joldimart.com
-- Full-Stack Software Engineer (part-time) at LuminexLabs (software studio) — since January 2026 — https://luminexlabs.io
 - Education: BSc in Computer Science & Engineering (CSE) at RUET — Rajshahi University of Engineering & Technology — started October 2024
 
 ## Skills
@@ -40,12 +39,12 @@ TypeScript, JavaScript, Next.js, React, NestJS, Node.js, Express.js, PostgreSQL,
 
 - Home / about: https://ars2k03.tech/
 - Projects by Md Arafat Rahman Sohan: https://ars2k03.tech/#projects
-- Work experience: https://ars2k03.tech/experience
-- Skills and tech stack: https://ars2k03.tech/skills
-- Contact Md Arafat Rahman Sohan: https://ars2k03.tech/contact
+- Work experience: https://ars2k03.tech/#experience
+- Skills and tech stack: https://ars2k03.tech/#skills
+- Contact Md Arafat Rahman Sohan: https://ars2k03.tech/#contact
 - Resume (PDF): https://ars2k03.tech/resume.pdf
 - Sitemap: https://ars2k03.tech/sitemap.xml
 
 ## Contact
 
-To contact Md Arafat Rahman Sohan for software engineering roles, freelance projects or collaboration, email arafatsohan2003@gmail.com or use the contact page: https://ars2k03.tech/contact
+To contact Md Arafat Rahman Sohan for software engineering roles, freelance projects or collaboration, email arafatsohan2003@gmail.com or use the contact form: https://ars2k03.tech/#contact

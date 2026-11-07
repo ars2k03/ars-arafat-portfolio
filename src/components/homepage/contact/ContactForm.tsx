@@ -3,6 +3,7 @@
 import { useActionState, useEffect, useState } from "react";
 import { sendContactMessage } from "@/actions/contact.actions";
 import type { ContactState } from "@/types/contact";
+import { displayFont } from "@/utils/fonts";
 
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState<ContactState, FormData>(sendContactMessage, {
@@ -20,8 +21,8 @@ export default function ContactForm() {
   }, [state]);
 
   const inputClass =
-    "w-full px-3.5 py-2.5 bg-[#fbf8f1] border border-[#1a1a1a] text-[#1a1a1a] font-sans text-base sm:text-sm placeholder:text-[#6b6254] focus:outline-none focus:shadow-[3px_3px_0px_#7a2020] transition-shadow";
-  const labelClass = "block mb-1.5 text-xs font-mono font-bold uppercase tracking-widest text-[#4a4336]";
+    "w-full min-h-[46px] px-3 py-2.5 rounded bg-[#fbf8f1] border border-[#1a1a1a] text-[#1a1a1a] font-sans text-base placeholder:text-[#6b6254] focus:outline-none focus:shadow-[3px_3px_0px_#7a2020] transition-shadow";
+  const labelClass = "block mb-1.5 text-sm font-semibold text-[#1a1a1a]";
 
   return (
     <>
@@ -29,11 +30,11 @@ export default function ContactForm() {
     <form
       key={state.id}
       action={formAction}
-      className="p-5 sm:p-7 bg-[#f4efe2] border-2 border-[#1a1a1a] shadow-[6px_6px_0px_#1a1a1a] space-y-5"
+      className="h-full p-5 md:p-7 bg-[#f4efe2] border-[1.5px] border-[#1a1a1a] shadow-[4px_4px_0px_#1a1a1a] space-y-4"
     >
-      <h2 className="text-2xl sm:text-3xl font-black font-serif text-[#1a1a1a] tracking-tight">
+      <h3 className={`${displayFont.className} text-[1.75rem] md:text-[2rem] leading-tight text-[#1a1a1a]`}>
         Send a Message
-      </h2>
+      </h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
@@ -65,7 +66,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-[#fbf8f1] text-xs sm:text-sm font-sans font-bold tracking-widest uppercase hover:bg-[#7a2020] transition-colors border border-[#1a1a1a] shadow-[4px_4px_0px_#7a2020] active:translate-x-0.5 active:translate-y-0.5 cursor-pointer disabled:opacity-70 disabled:cursor-wait"
+          className="inline-flex items-center justify-center gap-2 w-full sm:w-auto h-12 px-6 rounded bg-[#1a1a1a] text-[#fbf8f1] text-base font-semibold border-[1.5px] border-[#1a1a1a] transition-colors hover:bg-[#7a2020] hover:border-[#7a2020] cursor-pointer disabled:opacity-70 disabled:cursor-wait"
         >
           {pending ? (
             <>
@@ -74,8 +75,8 @@ export default function ContactForm() {
             </>
           ) : (
             <>
-              <span>Send Message</span>
-              <span>→</span>
+              <span>Send message</span>
+              <span aria-hidden="true">→</span>
             </>
           )}
         </button>

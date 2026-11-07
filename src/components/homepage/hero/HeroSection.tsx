@@ -63,7 +63,7 @@ export default function HeroSection() {
             </Link>
 
             <Link
-              href="/contact"
+              href="/#contact"
               className="inline-flex items-center justify-center h-12 px-6 rounded text-[#1a1a1a] text-base font-semibold border-[1.5px] border-[#1a1a1a] transition-colors hover:bg-[#1a1a1a] hover:text-[#fbf8f1]"
             >
               Get in touch

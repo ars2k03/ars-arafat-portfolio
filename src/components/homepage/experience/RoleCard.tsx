@@ -1,4 +1,5 @@
 import type { Role } from "@/types/experience";
+import { displayFont } from "@/utils/fonts";
 
 interface RoleCardProps {
   role: Role;
@@ -6,42 +7,34 @@ interface RoleCardProps {
 
 export default function RoleCard({ role }: RoleCardProps) {
   return (
-    <li className="pl-6 sm:pl-8 relative">
-      <span className="absolute -left-[9px] top-3 w-4 h-4 bg-[#7a2020] border-2 border-[#1a1a1a]" />
+    <li className="relative">
+      <span className="absolute -left-8 top-3.5 w-3.5 h-3.5 bg-[#7a2020] border-2 border-[#1a1a1a]" aria-hidden="true" />
 
-      <article className="bg-[#f4efe2] border-2 border-[#1a1a1a] shadow-[5px_5px_0px_#1a1a1a]">
-        <header className="flex flex-wrap items-center justify-between gap-2 px-5 sm:px-7 py-2.5 border-b border-[#1a1a1a]/30 text-xs font-mono font-bold uppercase tracking-widest">
+      <article className="bg-[#f4efe2] border-[1.5px] border-[#1a1a1a] shadow-[4px_4px_0px_#1a1a1a]">
+        <header className="flex flex-wrap items-center justify-between gap-2 px-5 md:px-7 py-2.5 border-b border-[#1a1a1a]/30 text-sm font-semibold">
           <span className="text-[#7a2020]">{role.period}</span>
           <span className="text-[#4a4336]">
             {[role.employmentType, role.location].filter(Boolean).join(" · ")}
           </span>
         </header>
 
-        <div className="p-5 sm:p-7 sm:grid sm:grid-cols-[1fr_auto] sm:gap-x-6">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-black font-serif text-[#1a1a1a] tracking-tight">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 p-5 md:p-7">
+          <div className="flex-1 basis-72 min-w-0">
+            <h3 className={`${displayFont.className} text-[1.75rem] md:text-[2rem] leading-tight text-[#1a1a1a]`}>
               {role.organization}
-            </h2>
-            <p className="text-base sm:text-lg font-bold font-serif text-[#7a2020] mt-1">
-              {role.title}
-            </p>
-            <p className="text-sm sm:text-base italic font-serif text-[#4a4336] mt-2">
-              {role.about}
-            </p>
+            </h3>
+            <p className="mt-1 text-[17px] font-semibold text-[#1a1a1a]">{role.title}</p>
+            <p className="mt-1.5 text-base leading-relaxed text-[#2e2a22]">{role.about}</p>
           </div>
 
-          <div className="flex flex-wrap gap-3 mt-4 sm:mt-0 sm:col-start-2 sm:row-start-1 sm:self-start">
-            {role.links.map((link, i) => (
+          <div className="flex flex-wrap gap-3">
+            {role.links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className={
-                  i === 0
-                    ? "inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a1a1a] text-[#fbf8f1] text-xs font-sans font-bold tracking-widest uppercase hover:bg-[#7a2020] transition-colors border border-[#1a1a1a] shadow-[3px_3px_0px_#7a2020]"
-                    : "inline-flex items-center gap-2 px-5 py-2.5 bg-[#fbf8f1] text-[#1a1a1a] text-xs font-sans font-bold tracking-widest uppercase hover:bg-[#ede3ce] hover:text-[#7a2020] transition-colors border-2 border-[#1a1a1a] shadow-[3px_3px_0px_#1a1a1a]"
-                }
+                className="inline-flex items-center gap-1.5 h-[42px] px-4 rounded bg-[#1a1a1a] text-[#fbf8f1] text-[15px] font-semibold border-[1.5px] border-[#1a1a1a] transition-colors hover:bg-[#7a2020] hover:border-[#7a2020]"
               >
                 <span>{link.label}</span>
                 <span aria-hidden="true">&#8599;&#xFE0E;</span>

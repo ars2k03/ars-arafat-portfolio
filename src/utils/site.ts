@@ -25,7 +25,7 @@ export const site = {
   },
   email: "arafatsohan2003@gmail.com",
   description:
-    "Md Arafat Rahman Sohan, known as ARS (ars2k03), is a full-stack software engineer from Rajshahi, Bangladesh. He is a founding engineer at Chakri AI and JoldiMart, works part-time at LuminexLabs, and studies BSc in Computer Science & Engineering at RUET. He builds production web and mobile applications with TypeScript, Next.js, NestJS and PostgreSQL.",
+    "Md Arafat Rahman Sohan, known as ARS (ars2k03), is a full-stack software engineer from Rajshahi, Bangladesh. He is a founding engineer at Chakri AI and JoldiMart and studies BSc in Computer Science & Engineering at RUET. He builds production web and mobile applications with TypeScript, Next.js, NestJS and PostgreSQL.",
   github: { handle: "ars2k03", url: "https://github.com/ars2k03" },
   linkedin: { handle: "ars2k05", url: "https://www.linkedin.com/in/ars2k05" },
   x: { handle: "ars_2k03", url: "https://x.com/ars_2k03" },

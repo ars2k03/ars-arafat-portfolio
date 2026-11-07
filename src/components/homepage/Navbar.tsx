@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { displayFont } from "@/utils/fonts";
@@ -17,22 +17,41 @@ function ArrowIcon() {
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const [projectsInView, setProjectsInView] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/" && !projectsInView;
-    if (href === "/#projects") return pathname === "/" && projectsInView;
+    if (href === "/") return pathname === "/" && !activeSection;
+    if (href.startsWith("/#")) return pathname === "/" && activeSection === href.slice(2);
     return pathname.startsWith(href);
   };
   const closeMenu = () => setMobileMenuOpen(false);
 
-  useEffect(() => {
-    const section = document.getElementById("projects");
-    if (!section) return;
+  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+    closeMenu();
+    if (pathname !== "/" || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-    const observer = new IntersectionObserver(([entry]) => setProjectsInView(entry.isIntersecting), {
-      rootMargin: "-40% 0px -55% 0px",
+    e.preventDefault();
+    window.history.replaceState(null, "", href);
+    if (href === "/") window.scrollTo({ top: 0 });
+    else document.getElementById(href.slice(2))?.scrollIntoView();
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          setActiveSection((current) => {
+            if (isIntersecting) return target.id;
+            return current === target.id ? null : current;
+          });
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+
+    NAV_ITEMS.filter((item) => item.href.startsWith("/#")).forEach((item) => {
+      const section = document.getElementById(item.href.slice(2));
+      if (section) observer.observe(section);
     });
-    observer.observe(section);
     return () => observer.disconnect();
   }, [pathname]);
 
@@ -64,7 +83,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 h-[72px] grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center">
         <Link
           href="/"
-          onClick={closeMenu}
+          onClick={(e) => handleNavClick(e, "/")}
           aria-label="Md Arafat Rahman Sohan (ARS) — home"
           className={`${displayFont.className} italic justify-self-start text-[32px] leading-none tracking-[0.06em] transition-colors hover:text-[#7a2020]`}
         >
@@ -76,6 +95,7 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={`relative flex items-center h-full px-3 lg:px-5 text-base lg:text-[17px] font-semibold transition-colors ${
                 isActive(item.href)
@@ -133,7 +153,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={closeMenu}
+                onClick={(e) => handleNavClick(e, item.href)}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={`flex items-center h-14 px-4 border-t border-[#1a1a1a]/10 text-lg font-semibold transition-colors ${
                   isActive(item.href) ? "text-[#7a2020]" : "text-[#2e2a22] hover:text-[#7a2020]"

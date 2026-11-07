@@ -5,6 +5,5 @@ export interface TechItem {
 
 export interface TechCategory {
   title: string;
-  icon: string;
   items: TechItem[];
 }

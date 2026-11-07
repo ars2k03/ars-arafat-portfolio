@@ -40,7 +40,7 @@ export default function ProjectsSection() {
             <span aria-hidden="true">&#8599;&#xFE0E;</span>
           </a>
           <Link
-            href="/contact"
+            href="/#contact"
             className="inline-flex items-center h-11 px-5 rounded text-[#1a1a1a] text-[15px] font-semibold border-[1.5px] border-[#1a1a1a] transition-colors hover:bg-[#1a1a1a] hover:text-[#fbf8f1]"
           >
             Get in touch
