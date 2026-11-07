@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import JsonLd from "@/components/ui/JsonLd";
 import { site, siteKeywords } from "@/utils/site";
 
-const googleVerification =
-  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
-  "ZB468EsE6lB6ERkxBGd-Mw2zSSlLc38DSWLA5FUX414";
-// Verification code for the new primary domain ars2k03.tech (the old
-// .online property stays verified for the Search Console change of address).
-const googleVerificationTech = "E1MK7lGu8CgPXu1iexo4BZQTTfR353CNLYwC0dYM_80";
-const bingVerification =
-  process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ??
-  "C21794052CFA76F06EE8AD5037A6519F";
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -60,22 +54,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  ...(googleVerification || bingVerification
-    ? {
-        verification: {
-          ...(googleVerification || googleVerificationTech
-            ? {
-                google: [googleVerification, googleVerificationTech].filter(
-                  Boolean,
-                ),
-              }
-            : {}),
-          ...(bingVerification
-            ? { other: { "msvalidate.01": bingVerification } }
-            : {}),
-        },
-      }
-    : {}),
+  verification: {
+    google: googleVerification,
+    ...(bingVerification ? { other: { "msvalidate.01": bingVerification } } : {}),
+  },
 };
 
 const personJsonLd = {
@@ -158,10 +140,7 @@ export default function RootLayout({
       className="h-full scroll-smooth antialiased"
     >
       <body className="min-h-full flex flex-col bg-[#fbf8f1] text-[#1a1a1a] selection:bg-[#7a2020] selection:text-[#fbf8f1]">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
+        <JsonLd data={personJsonLd} />
         {children}
       </body>
     </html>

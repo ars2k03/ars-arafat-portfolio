@@ -88,11 +88,15 @@ This opens the PDF in a viewer and rebuilds it every time you save `resume.tex`.
 
 ```
 src/
+├── actions/             # Server Actions
 ├── app/
 │   └── (homepage)/      # Pages: home, experience, projects, skills, contact
-├── components/          # Navbar, ContactForm, TechTile
-├── lib/                 # Contact Server Action
-└── utils/               # Site info, navigation
+├── components/
+│   ├── homepage/        # Navbar and page sections
+│   └── ui/              # Shared UI
+├── lib/                 # Server-only email sending
+├── types/               # Shared types
+└── utils/               # Site info, navigation, page content
 public/                  # Profile photo, project screenshots, skill logos, resume
 resume/                  # LaTeX resume source and live-build script
 ```

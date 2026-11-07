@@ -1,21 +1,10 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
-import { sendContactMessage, type ContactState } from "@/lib/contact-actions";
+import { sendContactMessage } from "@/actions/contact.actions";
+import type { ContactState } from "@/types/contact";
 
-interface ContactFormProps {
-  email: string;
-}
-
-export default function ContactForm({ email }: ContactFormProps) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
-
+export default function ContactForm() {
   const [state, formAction, pending] = useActionState<ContactState, FormData>(sendContactMessage, {
     status: "idle",
     message: "",

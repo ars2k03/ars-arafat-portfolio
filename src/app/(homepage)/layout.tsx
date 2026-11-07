@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/homepage/Navbar";
 
 export default function HomepageLayout({
   children,
