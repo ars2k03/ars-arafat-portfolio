@@ -1,8 +1,6 @@
 "use server";
 
-import { headers } from "next/headers";
 import { Resend } from "resend";
-import { redis } from "@/lib/redis";
 
 export interface ContactState {
   status: "idle" | "success" | "error";
@@ -16,34 +14,16 @@ const MESSAGES = {
   missingFields: "Please complete all required fields before sending.",
   invalidEmail: "Please provide a valid email address.",
   tooLong: "Your message exceeds the allowed length. Please shorten it and try again.",
-  rateLimited: "You have reached the message limit. Please try again later.",
   unavailable: "Your message could not be sent at the moment. Please try again later or reach me by email.",
 } as const;
 
 const log = (event: string, detail?: string) =>
   console.error(`[contact] ${event}${detail ? `: ${detail}` : ""}`);
 
-const RATE_LIMIT = 3;
-const RATE_WINDOW_SECONDS = 60 * 60;
-
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const escapeHtml = (value: string) =>
   value.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
-
-// fails open if redis is down
-async function withinRateLimit(ip: string) {
-  try {
-    if (redis.status === "wait") await redis.connect();
-    const key = `contact:rate:${ip}`;
-    const count = await redis.incr(key);
-    if (count === 1) await redis.expire(key, RATE_WINDOW_SECONDS);
-    return count <= RATE_LIMIT;
-  } catch (error) {
-    log("rate limiter unavailable", error instanceof Error ? error.message : undefined);
-    return true;
-  }
-}
 
 export async function sendContactMessage(_prev: ContactState, formData: FormData): Promise<ContactState> {
   const id = Date.now();
@@ -68,12 +48,6 @@ export async function sendContactMessage(_prev: ContactState, formData: FormData
   }
   if (name.length > 100 || subject.length > 200 || message.length > 5000) {
     return { status: "error", message: MESSAGES.tooLong, id, fields };
-  }
-
-  const requestHeaders = await headers();
-  const ip = requestHeaders.get("x-forwarded-for")?.split(",")[0].trim() ?? "127.0.0.1";
-  if (!(await withinRateLimit(ip))) {
-    return { status: "error", message: MESSAGES.rateLimited, id, fields };
   }
 
   const to = process.env.CONTACT_TO_EMAIL;

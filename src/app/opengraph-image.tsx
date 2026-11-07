@@ -91,7 +91,7 @@ export default async function Image() {
             </div>
           </div>
           {profileSrc ? (
-            // eslint-disable-next-line @next/next/no-img-element
+            // oxlint-disable-next-line nextjs/no-img-element
             <img
               src={profileSrc}
               alt=""
