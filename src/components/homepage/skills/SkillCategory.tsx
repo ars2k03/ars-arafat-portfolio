@@ -1,4 +1,4 @@
-import Image from "next/image";
+import TechButton from "@/components/homepage/skills/TechButton";
 import type { TechCategory } from "@/types/skills";
 import { displayFont } from "@/utils/fonts";
 
@@ -15,12 +15,8 @@ export default function SkillCategory({ category }: SkillCategoryProps) {
 
       <ul className="flex flex-wrap gap-2">
         {category.items.map((tech) => (
-          <li
-            key={tech.name}
-            className="inline-flex items-center gap-2 h-14 px-3 rounded bg-[#fbf8f1] border-[1.5px] border-[#1a1a1a] text-[17px] font-semibold text-[#1a1a1a]"
-          >
-            <Image src={tech.logo} alt="" width={32} height={32} className="w-8 h-8 object-contain" />
-            <span>{tech.name}</span>
+          <li key={tech.name}>
+            <TechButton tech={tech} size="lg" />
           </li>
         ))}
       </ul>

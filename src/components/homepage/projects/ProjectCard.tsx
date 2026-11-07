@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ProjectLinks from "@/components/homepage/projects/ProjectLinks";
+import TechButton from "@/components/homepage/skills/TechButton";
 import type { Project } from "@/types/projects";
 import { displayFont } from "@/utils/fonts";
 
@@ -22,12 +23,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         <ul aria-label="Built with" className="flex flex-wrap gap-2 mt-1.5">
           {project.stack.map((tech) => (
-            <li
-              key={tech.name}
-              className="inline-flex items-center gap-1.5 h-9 px-2.5 rounded bg-[#fbf8f1] border border-[#1a1a1a]/30 text-sm font-semibold text-[#1a1a1a]"
-            >
-              <Image src={tech.logo} alt="" width={20} height={20} className="w-5 h-5 object-contain" />
-              <span>{tech.name}</span>
+            <li key={tech.name}>
+              <TechButton tech={tech} />
             </li>
           ))}
         </ul>
