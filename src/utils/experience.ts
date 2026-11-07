@@ -20,7 +20,7 @@ export const roles: Role[] = [
   },
   {
     title: "Founding Full-Stack Engineer",
-    organization: "Chakri.ai",
+    organization: "Chakri AI",
     about: "AI-powered hiring platform for the Bangladesh job market, in public beta",
     period: "Since Jun 2026",
     location: "Remote",

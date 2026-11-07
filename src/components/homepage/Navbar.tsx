@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { logoFont } from "@/utils/fonts";
+import { displayFont } from "@/utils/fonts";
 import { NAV_ITEMS } from "@/utils/nav";
 
 function ArrowIcon() {
@@ -17,8 +17,24 @@ function ArrowIcon() {
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+  const [projectsInView, setProjectsInView] = useState(false);
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/" && !projectsInView;
+    if (href === "/#projects") return pathname === "/" && projectsInView;
+    return pathname.startsWith(href);
+  };
   const closeMenu = () => setMobileMenuOpen(false);
+
+  useEffect(() => {
+    const section = document.getElementById("projects");
+    if (!section) return;
+
+    const observer = new IntersectionObserver(([entry]) => setProjectsInView(entry.isIntersecting), {
+      rootMargin: "-40% 0px -55% 0px",
+    });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
@@ -50,7 +66,7 @@ export default function Navbar() {
           href="/"
           onClick={closeMenu}
           aria-label="Md Arafat Rahman Sohan (ARS) — home"
-          className={`${logoFont.className} justify-self-start text-[32px] leading-none tracking-[0.06em] transition-colors hover:text-[#7a2020]`}
+          className={`${displayFont.className} italic justify-self-start text-[32px] leading-none tracking-[0.06em] transition-colors hover:text-[#7a2020]`}
         >
           A R S
         </Link>

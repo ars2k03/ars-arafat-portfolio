@@ -21,20 +21,20 @@ export default function CopyEmailButton({ email, className }: CopyEmailButtonPro
       type="button"
       onClick={handleCopy}
       className={className}
-      title="Copy email to clipboard"
+      aria-label={copied ? "Email copied" : "Copy email to clipboard"}
+      title={copied ? "Copied!" : "Copy email to clipboard"}
     >
-      {copied ? (
-        <>
-          <span className="text-emerald-700 group-hover:text-emerald-400">✓ Copied!</span>
-        </>
-      ) : (
-        <>
-          <svg className="w-3.5 h-3.5 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-          <span>Email</span>
-        </>
-      )}
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d={
+            copied
+              ? "M5 13l4 4L19 7"
+              : "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          }
+        />
+      </svg>
     </button>
   );
 }

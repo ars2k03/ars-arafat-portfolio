@@ -17,8 +17,8 @@ export default function ProfilePortrait() {
   };
 
   return (
-    <div className="lg:col-span-5 flex justify-center lg:justify-end">
-      <div className="w-full max-w-sm sm:max-w-md lg:max-w-md bg-[#f4efe2] border-2 border-[#1a1a1a] p-3 sm:p-4 shadow-[6px_6px_0px_#1a1a1a] relative">
+    <div className="lg:col-span-5 flex justify-center lg:justify-end lg:items-start">
+      <div className="w-full max-w-sm sm:max-w-md lg:max-w-[380px] bg-[#f4efe2] border-2 border-[#1a1a1a] p-3 sm:p-4 shadow-[6px_6px_0px_#1a1a1a] relative">
 
         <div className="absolute top-1 left-1 w-3 h-3 border-t-2 border-l-2 border-[#1a1a1a] pointer-events-none"></div>
         <div className="absolute top-1 right-1 w-3 h-3 border-t-2 border-r-2 border-[#1a1a1a] pointer-events-none"></div>

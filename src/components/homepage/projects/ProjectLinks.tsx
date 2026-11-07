@@ -13,11 +13,11 @@ export default function ProjectLinks({ links }: ProjectLinksProps) {
           href={link.href}
           target="_blank"
           rel="noreferrer"
-          className={
+          className={`inline-flex items-center gap-1.5 h-[42px] px-4 rounded border-[1.5px] border-[#1a1a1a] text-[15px] font-semibold transition-colors ${
             i === 0
-              ? "inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a1a1a] text-[#fbf8f1] text-xs font-sans font-bold tracking-widest uppercase hover:bg-[#7a2020] transition-colors border border-[#1a1a1a] shadow-[3px_3px_0px_#7a2020]"
-              : "inline-flex items-center gap-2 px-5 py-2.5 bg-[#fbf8f1] text-[#1a1a1a] text-xs font-sans font-bold tracking-widest uppercase hover:bg-[#ede3ce] hover:text-[#7a2020] transition-colors border-2 border-[#1a1a1a] shadow-[3px_3px_0px_#1a1a1a]"
-          }
+              ? "bg-[#1a1a1a] text-[#fbf8f1] hover:bg-[#7a2020] hover:border-[#7a2020]"
+              : "text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#fbf8f1]"
+          }`}
         >
           <span>{link.label}</span>
           <span aria-hidden="true">&#8599;&#xFE0E;</span>

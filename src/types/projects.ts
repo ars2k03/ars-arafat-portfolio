@@ -7,9 +7,8 @@ export interface ProjectLink {
 
 export interface Project {
   title: string;
-  type: string;
+  description: string;
   image?: string;
-  highlights: string[];
   stack: TechItem[];
   links: ProjectLink[];
 }

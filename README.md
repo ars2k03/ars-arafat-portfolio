@@ -1,6 +1,6 @@
 # A R S — Portfolio of Md Arafat Rahman Sohan (ars2k03)
 
-Personal portfolio of **Md Arafat Rahman Sohan** — known as **ARS** / **ars2k03** ([ars2k03.tech](https://ars2k03.tech)), a full-stack software engineer from Rajshahi, Bangladesh. Founding engineer at Chakri.ai and JoldiMart, part-time at LuminexLabs, and BSc CSE student at RUET. The site is designed like a vintage newspaper: each visitor gets their own "volume" number, a live ticker shows local weather, and pages flip like a broadsheet when you scroll past the edge.
+Personal portfolio of **Md Arafat Rahman Sohan** — known as **ARS** / **ars2k03** ([ars2k03.tech](https://ars2k03.tech)), a full-stack software engineer from Rajshahi, Bangladesh. Founding engineer at Chakri AI and JoldiMart, part-time at LuminexLabs, and BSc CSE student at RUET. The site is designed like a vintage newspaper: each visitor gets their own "volume" number, a live ticker shows local weather, and pages flip like a broadsheet when you scroll past the edge.
 
 ## Pages
 
@@ -8,7 +8,6 @@ Personal portfolio of **Md Arafat Rahman Sohan** — known as **ARS** / **ars2k0
 |---|---|
 | `/` | Front page: introduction, profile, and highlights |
 | `/experience` | Work experience timeline |
-| `/projects` | Selected projects with screenshots, stack and links |
 | `/skills` | Technologies grouped by category |
 | `/contact` | Contact form that sends email through Resend |
 

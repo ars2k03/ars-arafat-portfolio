@@ -101,7 +101,7 @@ const personJsonLd = {
         "LLM Integration",
       ],
       worksFor: [
-        { "@type": "Organization", name: "Chakri.ai", url: "https://chakriai.com" },
+        { "@type": "Organization", name: "Chakri AI", url: "https://chakriai.com" },
         { "@type": "Organization", name: "JoldiMart", url: "https://joldimart.com" },
         { "@type": "Organization", name: "LuminexLabs", url: "https://luminexlabs.io" },
       ],

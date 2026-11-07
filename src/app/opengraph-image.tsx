@@ -77,7 +77,7 @@ export default async function Image() {
               Rajshahi, Bangladesh • RUET CSE
             </div>
             <div style={{ fontSize: 23, color: "#4a4336", marginTop: 4 }}>
-              Founding Engineer — Chakri.ai &amp; JoldiMart
+              Founding Engineer — Chakri AI &amp; JoldiMart
             </div>
             <div
               style={{

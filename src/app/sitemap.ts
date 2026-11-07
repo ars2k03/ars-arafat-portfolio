@@ -12,12 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: [`${site.url}/profile.jpg`],
     },
     {
-      url: `${site.url}/projects`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
       url: `${site.url}/experience`,
       lastModified: now,
       changeFrequency: "monthly",

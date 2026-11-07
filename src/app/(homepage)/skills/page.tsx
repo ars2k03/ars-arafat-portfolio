@@ -54,7 +54,7 @@ export default function SkillsPage() {
 
           <div className="flex flex-wrap items-center gap-3">
             <Link
-              href="/projects"
+              href="/#projects"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a1a1a] text-[#fbf8f1] text-xs font-sans font-bold tracking-widest uppercase hover:bg-[#7a2020] transition-colors border border-[#1a1a1a] shadow-[3px_3px_0px_#1a1a1a]"
             >
               <span>Explore Projects</span>
