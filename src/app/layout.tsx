@@ -3,9 +3,6 @@ import "./globals.css";
 import JsonLd from "@/components/ui/JsonLd";
 import { site, siteKeywords } from "@/utils/site";
 
-const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
-const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
-
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -53,10 +50,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  verification: {
-    google: googleVerification,
-    ...(bingVerification ? { other: { "msvalidate.01": bingVerification } } : {}),
   },
 };
 

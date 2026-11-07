@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterspace=35]{microtype}
+\usepackage[left=0.6in,right=0.6in,top=0.55in,bottom=0.5in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{linkblue}{RGB}{0,0,230}
+\newcommand{\rlink}[2]{\href{#1}{\textcolor{linkblue}{#2}}}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\emergencystretch=1em
+
+\titleformat{\section}{\Large\bfseries}{}{0pt}{}[\vspace{3pt}\titlerule]
+\titlespacing*{\section}{0pt}{15pt}{9pt}
+
+\setlist[itemize]{leftmargin=1.3em,topsep=3pt,itemsep=1pt,parsep=0pt,partopsep=0pt}
+
+\newcommand{\role}[4]{%
+  \textbf{Founding Full-Stack Engineer} $|$ \textbf{#1}\hfill\textit{#2}\\
+  \textit{#3}\hfill #4\par\vspace{6pt}}
+
+\newcommand{\project}[3]{%
+  \vspace{7pt}\textbf{#1} \rlink{#2}{[Live]} --- \textit{#3}\par}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries\textls{MD ARAFAT RAHMAN SOHAN}}\\[4pt]
+  Rajshahi, Bangladesh $|$ \rlink{mailto:arafatsohan2003@gmail.com}{arafatsohan2003@gmail.com} $|$ +8801771259478 $|$ \rlink{https://github.com/ars2k03}{GitHub} $|$ \rlink{https://www.linkedin.com/in/ars2k05}{LinkedIn}
+\end{center}
+
+\section{Professional Summary}
+Full-stack software engineer building production web platforms end to end, primarily with TypeScript, Next.js, NestJS and PostgreSQL. Founding engineer at two early-stage startups, Chakri AI (AI hiring platform) and JoldiMart (quick-commerce), and creator of WA Gateway, a public WhatsApp OTP API that powers login for both. Experienced in turning ideas into live, production-ready products and keeping them running at scale.
+
+\section{Technical Skills}
+\textbf{Languages:} TypeScript, JavaScript, SQL, Dart\\
+\textbf{Backend:} NestJS, Node.js, Express.js, REST APIs, WebSockets (Socket.IO)\\
+\textbf{Frontend \& Mobile:} Next.js, React, Tailwind CSS, Flutter\\
+\textbf{Databases:} PostgreSQL, MongoDB, Supabase, Redis, Prisma ORM\\
+\textbf{Cloud \& DevOps:} Docker, GitHub Actions (CI/CD), Cloudflare, Linux, Git\\
+\textbf{AI Integration:} LLM Integration, AI Agents, Speech-to-Text, Text-to-Speech
+
+\section{Experience}
+\role{\rlink{https://chakriai.com}{Chakri AI}}{Jun 2026}{AI-powered hiring platform for the Bangladesh job market, in public beta}{Remote}
+\role{\rlink{https://joldimart.com}{JoldiMart}}{Sep 2026}{Quick-commerce startup delivering groceries in Dhaka within 10 minutes}{Remote}
+
+\section{Projects}
+\project{WA Gateway}{https://wa.ars2k03.online}{WhatsApp OTP API}
+\begin{itemize}
+  \item Free public API that adds WhatsApp OTP verification to any website; powers login for Chakri AI and JoldiMart
+  \item QR-code number pairing, per-key API quotas, custom templates and Redis-backed sessions that auto-reconnect
+\end{itemize}
+\project{Chakri AI}{https://chakriai.com}{AI Hiring Platform}
+\begin{itemize}
+  \item Built the platform end to end (frontend, backend, database) and took it from concept to public beta
+  \item Built real-time voice AI interview pipeline and automated agents for candidate evaluation and shortlisting
+  \item CV parsing, AI job matching and real-time recruiter--candidate messaging
+\end{itemize}
+\project{JoldiMart}{https://joldimart.com}{Quick-Commerce Platform}
+\begin{itemize}
+  \item Built the storefront, backend and database for a 10-minute grocery delivery startup in Dhaka
+  \item WhatsApp OTP phone login, catalog, cart, checkout and live order tracking; Cash on Delivery live
+\end{itemize}
+
+\section{Education}
+\textbf{Bachelor of Science (BSc) in Computer Science \& Engineering}\hfill\textit{Oct 2024 -- Present}\\
+Rajshahi University of Engineering \& Technology (RUET), Rajshahi, Bangladesh
+
+\end{document}
