@@ -18,8 +18,8 @@ export const projects: Project[] = [
     image: "/projects/wa-gateway.png",
     stack: [tech.nextjs, tech.nestjs, tech.typescript, tech.postgresql, tech.redis],
     links: [
-      { label: "Live site", href: "https://wa.ars2k03.online" },
-      { label: "API docs", href: "https://wa.ars2k03.online/docs" },
+      { label: "Live site", href: "https://wa.ars2k03.tech" },
+      { label: "API docs", href: "https://wa.ars2k03.tech/docs" },
     ],
   },
   {

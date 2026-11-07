@@ -27,7 +27,7 @@ TypeScript, JavaScript, Next.js, React, NestJS, Node.js, Express.js, PostgreSQL,
 
 - Chakri AI — AI-powered hiring platform for the Bangladesh job market (founding engineer)
 - JoldiMart — quick-commerce grocery delivery in Dhaka within 10 minutes (founding engineer)
-- WA Gateway — free public WhatsApp OTP API for websites and apps, live at https://wa.ars2k03.online
+- WA Gateway — free public WhatsApp OTP API for websites and apps, live at https://wa.ars2k03.tech
 
 ## Official profiles (same person)
 
